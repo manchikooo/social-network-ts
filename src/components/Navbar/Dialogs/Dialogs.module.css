@@ -1,0 +1,41 @@
+
+.dialogs {
+    display: flex;
+    flex-direction: row;
+}
+
+.dialogsItem {
+    padding: 10px;
+}
+
+.dialogsItem .active {
+    font-weight: bold;
+    color: #00C854;
+}
+
+.dialog {
+    display: flex;
+    padding: 10px;
+}
+
+.dialog a {
+    color: #00C854;
+    text-decoration: none;;
+}
+
+.dialog img {
+    width: 15px;
+}
+
+
+a:hover {
+    text-decoration: underline;
+}
+
+.messages {
+    padding: 10px;
+}
+
+.message {
+    padding: 10px;
+}

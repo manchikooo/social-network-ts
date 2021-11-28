@@ -1,0 +1,27 @@
+
+.friendsTitle {
+    font-size: 18px;
+    margin: 50px 0 15px 0;
+}
+
+.friendsItems img {
+    width: 100%;
+}
+.friendsItems {
+    text-align: center;
+}
+
+.friendsBlock {
+    display: flex;
+    justify-content: space-between;
+}
+
+.friendAva {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+}

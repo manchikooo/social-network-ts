@@ -1,3 +1,4 @@
+import React from "react";
 import {FriendsItemType} from "../../../Redux/state";
 import classes from './Friends.module.css'
 
@@ -12,7 +13,7 @@ export const FriendsItem = (props: PropsType) => {
             <div className={classes.friendsItems}>
                 <div className={classes.friendAva}>
                     <img
-                        src='https://cdn-icons.flaticon.com/png/512/3641/premium/3641963.png?token=exp=1637860180~hmac=b589476014cf6251bd70a797a8f4a131'/>
+                        src='https://st2.depositphotos.com/3557671/11164/v/950/depositphotos_111644880-stock-illustration-man-avatar-icon-of-vector.jpg'/>
                 </div>
                 {props.name}
             </div>

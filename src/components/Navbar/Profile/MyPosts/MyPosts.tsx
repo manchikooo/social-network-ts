@@ -13,15 +13,18 @@ const MyPosts = (props: MyPostsType) => {
                                                       comments={p.comments}
                                                       reposts={p.reposts}/>)
 
+    let newPostElement = React.createRef<HTMLTextAreaElement>()
+    const addPost = () => alert(newPostElement.current?.value)
+
     return (
         <div className={classes.postsBlock}>
-            <div className={classes.myPostsTitle}>
+            <h3 className={classes.myPostsTitle}>
                 My posts
-            </div>
+            </h3>
             <div className={classes.makeNewPost}>
-                <textarea></textarea>
+                <textarea ref={newPostElement}></textarea>
                 <div>
-                    <button>Add post</button>
+                    <button onClick={addPost}>Add post</button>
                 </div>
             </div>
             <div className={classes.postedPosts}>

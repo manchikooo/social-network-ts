@@ -1,7 +1,7 @@
 import classes from './../Dialogs.module.css'
 
 export type MessageType = {
-    id: number
+    id: string
     message: string
 }
 

@@ -2,6 +2,7 @@
 import classes from './Friends.module.css'
 import {FriendsItem} from "./FriendsItem";
 import {FriendsItemType} from "../../../Redux/state";
+import React from 'react';
 
 
 type PropsType = {

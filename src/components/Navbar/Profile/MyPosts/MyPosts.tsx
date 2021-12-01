@@ -1,9 +1,11 @@
 import React from "react";
 import classes from './MyPosts.module.css'
 import Post, {PostType} from "./Post/Post";
+import {v1} from "uuid";
 
 export type MyPostsType = {
     allPosts: Array<PostType>
+    addPostCallback: (postText: string) => void
 }
 
 const MyPosts = (props: MyPostsType) => {
@@ -11,10 +13,17 @@ const MyPosts = (props: MyPostsType) => {
     let postsElements = props.allPosts.map(p => <Post messageInPost={p.messageInPost}
                                                       likes={p.likes}
                                                       comments={p.comments}
-                                                      reposts={p.reposts}/>)
+                                                      reposts={p.reposts}
+                                                      id={v1()}/>)
 
     let newPostElement = React.createRef<HTMLTextAreaElement>()
-    const addPost = () => alert(newPostElement.current?.value)
+    const addPost = () => {
+        if (newPostElement.current) {
+            props.addPostCallback(newPostElement.current.value)
+            newPostElement.current.value = ''
+        }
+        // alert(newPostElement.current?.value)
+    }
 
     return (
         <div className={classes.postsBlock}>

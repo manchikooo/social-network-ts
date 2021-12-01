@@ -3,6 +3,7 @@ import classes from './Post.module.css'
 import {Link} from "react-router-dom";
 
 export type PostType = {
+    id: string
     messageInPost: string
     likes: number
     comments: number

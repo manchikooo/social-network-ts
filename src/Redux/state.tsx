@@ -2,6 +2,8 @@ import {PostType} from "../components/Navbar/Profile/MyPosts/Post/Post";
 import {DialogItemType} from "../components/Navbar/Dialogs/DialogItem/DialogsItem";
 import {MessageType} from "../components/Navbar/Dialogs/Message/Message";
 import {v1} from "uuid";
+import {rerenderEntireTree} from "../render";
+
 
 export type StateType = {
     profilePage: ProfilePageType
@@ -83,4 +85,16 @@ export let state = {
             {id: v1(), name: 'Maks'},
         ]
     }
+}
+
+export const addPost = (postText: string) => {
+    const newPost: PostType = {
+        id: v1(),
+        messageInPost: postText,
+        likes: 100,
+        comments: 100,
+        reposts: 100
+    }
+    state.profilePage.posts.push(newPost)
+    rerenderEntireTree(state)
 }

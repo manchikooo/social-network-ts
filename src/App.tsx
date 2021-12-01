@@ -13,7 +13,8 @@ import {Settings} from "./components/Navbar/Settings/Settings";
 import {StateType} from "./Redux/state";
 
 type AppType = {
-   state: StateType
+    state: StateType
+    addPostCallback: (postText: string) => void
 }
 
 function App(props: AppType) {
@@ -25,7 +26,8 @@ function App(props: AppType) {
                 <Navbar friends={props.state.sidebar.friends}/>
                 <div className='app-wrapper-content'>
                     <Routes>
-                        <Route path='/profile' element={<Profile allPosts={props.state.profilePage.posts}/>}/>
+                        <Route path='/profile'
+                               element={<Profile allPosts={props.state.profilePage.posts} addPostCallback={props.addPostCallback}/>}/>
                         <Route path='/dialogs/*' element={<Dialogs dialogItems={props.state.dialogsPage.dialogs}
                                                                    messages={props.state.dialogsPage.messages}/>}/>
                         <Route path='/news' element={<News/>}/>

@@ -2,7 +2,6 @@ import {PostType} from "../components/Navbar/Profile/MyPosts/Post/Post";
 import {DialogItemType} from "../components/Navbar/Dialogs/DialogItem/DialogsItem";
 import {MessageType} from "../components/Navbar/Dialogs/Message/Message";
 import {v1} from "uuid";
-import {rerenderEntireTree} from "../render";
 
 
 export type StateType = {
@@ -90,9 +89,18 @@ export let state = {
     }
 }
 
+
+let rerenderEntireTree = () => {
+}
+
+export const subscribe = (observer: () => void) => {
+    rerenderEntireTree = observer
+}
+
+
 export const changeNewMessageText = (newMessage: string) => {
     state.dialogsPage.newMessageText = newMessage
-    rerenderEntireTree(state)
+    rerenderEntireTree()
 }
 export const sendNewMessage = () => {
     const newMessage: MessageType = {
@@ -100,12 +108,13 @@ export const sendNewMessage = () => {
     }
     state.dialogsPage.messages.push(newMessage)
     state.dialogsPage.newMessageText = ''
-    rerenderEntireTree(state)
+    rerenderEntireTree()
 }
+
 
 export const changeNewPostText = (newText: string) => {
     state.profilePage.newPostText = newText
-    rerenderEntireTree(state)
+    rerenderEntireTree()
 }
 
 export const addPost = () => {
@@ -118,6 +127,6 @@ export const addPost = () => {
     }
     state.profilePage.posts.push(newPost)
     state.profilePage.newPostText = ''
-    rerenderEntireTree(state)
+    rerenderEntireTree()
 }
 

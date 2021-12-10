@@ -10,14 +10,14 @@ import {Music} from "./components/Navbar/Music/Music";
 import Footer from "./components/Footer/Footer";
 import {Videos} from "./components/Navbar/Videos/Videos";
 import {Settings} from "./components/Navbar/Settings/Settings";
-import {sendNewMessage, StateType} from "./Redux/state";
+import {StateType} from "./Redux/state";
 
 type AppType = {
     state: StateType
     addPostCallback: (postText: string) => void
     changeNewTextCallback: (newText: string) => void
     sendNewMessage: () => void
-    changeNewMessageText: (newMessage: string) => string
+    changeNewMessageText: (newMessage: string) => void
 }
 
 function App(props: AppType) {

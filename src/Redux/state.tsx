@@ -13,10 +13,12 @@ export type StateType = {
 
 type ProfilePageType = {
     posts: Array<PostType>
+    newPostText: string
 }
 type DialogsPageType = {
     dialogs: Array<DialogItemType>
     messages: Array<MessageType>
+    newMessageText: string
 }
 export type SidebarType = {
     friends: Array<FriendsItemType>
@@ -26,7 +28,6 @@ export type FriendsItemType = {
     id?: string
     name: string
 }
-
 
 export let state = {
     profilePage: {
@@ -59,6 +60,7 @@ export let state = {
                 comments: 67,
                 reposts: 24,
             },],
+        newPostText: 'it-kamasutra'
     },
     dialogsPage: {
         dialogs: [
@@ -77,6 +79,7 @@ export let state = {
             {id: v1(), message: 'MAGA'},
             {id: v1(), message: 'buy please'},
         ],
+        newMessageText: 'hello'
     },
     sidebar: {
         friends: [
@@ -87,14 +90,34 @@ export let state = {
     }
 }
 
-export const addPost = (postText: string) => {
+export const changeNewMessageText = (newMessage: string) => {
+    state.dialogsPage.newMessageText = newMessage
+    rerenderEntireTree(state)
+}
+export const sendNewMessage = () => {
+    const newMessage: MessageType = {
+        id: v1(), message: state.dialogsPage.newMessageText
+    }
+    state.dialogsPage.messages.push(newMessage)
+    state.dialogsPage.newMessageText = ''
+    rerenderEntireTree(state)
+}
+
+export const changeNewPostText = (newText: string) => {
+    state.profilePage.newPostText = newText
+    rerenderEntireTree(state)
+}
+
+export const addPost = () => {
     const newPost: PostType = {
         id: v1(),
-        messageInPost: postText,
+        messageInPost: state.profilePage.newPostText,
         likes: 100,
         comments: 100,
         reposts: 100
     }
     state.profilePage.posts.push(newPost)
+    state.profilePage.newPostText = ''
     rerenderEntireTree(state)
 }
+

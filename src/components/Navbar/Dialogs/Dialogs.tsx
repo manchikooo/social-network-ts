@@ -7,6 +7,9 @@ import {Message, MessageType} from "./Message/Message";
 type DialogsType = {
     dialogItems: Array<DialogItemType>
     messages: Array<MessageType>
+    newMessageText: string
+    sendNewMessage: () => void
+    changeNewMessageText: (newMessage: string) => string
 }
 
 export const Dialogs = (props: DialogsType) => {
@@ -14,8 +17,7 @@ export const Dialogs = (props: DialogsType) => {
     let dialogsElements = props.dialogItems.map(d => <DialogItem name={d.name} id={d.id}/>)
     let messagesElements = props.messages.map(m => <Message message={m.message} id={m.id}/>)
 
-    let newMessageElement = React.createRef<HTMLTextAreaElement>()
-    const sendMessage = () => alert(newMessageElement.current?.value)
+    const changeNewValueOfMessage = (e: React.ChangeEvent<HTMLTextAreaElement>) => props.changeNewMessageText(e.currentTarget.value)
 
     return (
         <div className={classes.dialogs}>
@@ -25,10 +27,12 @@ export const Dialogs = (props: DialogsType) => {
             <div className={classes.messages}>
                 {messagesElements}
                 <div>
-                    <textarea ref={newMessageElement}></textarea>
+                    <textarea value={props.newMessageText}
+                              onChange={changeNewValueOfMessage}
+                    />
                 </div>
                 <div>
-                    <button onClick={sendMessage}>Send message</button>
+                    <button onClick={props.sendNewMessage}>Send message</button>
                 </div>
             </div>
         </div>

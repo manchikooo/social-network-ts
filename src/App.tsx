@@ -22,7 +22,7 @@ type AppType = {
 
 function App(props: AppType) {
     // ничего
-    // 111111111
+    // 2222
     return (
         <BrowserRouter>
             <div className='app-wrapper'>

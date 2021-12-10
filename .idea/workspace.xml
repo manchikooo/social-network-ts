@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6fc4ea19-3f09-4790-b2e0-8b5dbe5b2424" name="Changes" comment="modification of dialogs and profile">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="6fc4ea19-3f09-4790-b2e0-8b5dbe5b2424" name="Changes" comment="added 111111111">
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Navbar/Dialogs/Dialogs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar/Dialogs/Dialogs.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,7 +163,21 @@
       <option name="project" value="LOCAL" />
       <updated>1637580259527</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="урок 1 (тест) зум">
+      <created>1639148004537</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1639148004537</updated>
+    </task>
+    <task id="LOCAL-00006" summary="added 111111111">
+      <created>1639148100145</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1639148100145</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -190,6 +202,8 @@
     <MESSAGE value="learning map, filter, find" />
     <MESSAGE value="." />
     <MESSAGE value="modification of dialogs and profile" />
-    <option name="LAST_COMMIT_MESSAGE" value="modification of dialogs and profile" />
+    <MESSAGE value="урок 1 (тест) зум" />
+    <MESSAGE value="added 111111111" />
+    <option name="LAST_COMMIT_MESSAGE" value="added 111111111" />
   </component>
 </project>

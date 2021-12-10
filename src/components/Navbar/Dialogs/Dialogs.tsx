@@ -9,7 +9,7 @@ type DialogsType = {
     messages: Array<MessageType>
     newMessageText: string
     sendNewMessage: () => void
-    changeNewMessageText: (newMessage: string) => string
+        changeNewMessageText: (newMessage: string) => void
 }
 
 export const Dialogs = (props: DialogsType) => {

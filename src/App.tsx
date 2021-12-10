@@ -21,7 +21,7 @@ type AppType = {
 }
 
 function App(props: AppType) {
-let a
+    // ничего
     return (
         <BrowserRouter>
             <div className='app-wrapper'>

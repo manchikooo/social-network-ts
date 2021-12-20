@@ -10,38 +10,37 @@ import {Music} from "./components/Navbar/Music/Music";
 import Footer from "./components/Footer/Footer";
 import {Videos} from "./components/Navbar/Videos/Videos";
 import {Settings} from "./components/Navbar/Settings/Settings";
-import {StateType} from "./Redux/state";
+import {StoreType} from "./Redux/state";
 
 type AppType = {
-    state: StateType
-    addPostCallback: (postText: string) => void
-    changeNewTextCallback: (newText: string) => void
-    sendNewMessage: () => void
-    changeNewMessageText: (newMessage: string) => void
+    store: StoreType
 }
 
 function App(props: AppType) {
+
+    const state = props.store.getState()
 
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
-                <Navbar friends={props.state.sidebar.friends}/>
+                <Navbar friends={state.sidebar.friends}/>
                 <div className='app-wrapper-content'>
                     <Routes>
                         <Route path='/profile'
-                               element={<Profile allPosts={props.state.profilePage.posts}
-                                                 addPostCallback={props.addPostCallback}
-                                                 newPostText={props.state.profilePage.newPostText}
-                                                 changeNewTextCallback={props.changeNewTextCallback}/>
+                               element={<Profile allPosts={state.profilePage.posts}
+                                                 addPostCallback={props.store.addPost.bind(props.store)}
+                                                 newPostText={state.profilePage.newPostText}
+                                                 changeNewTextCallback={props.store.changeNewPostText.bind(props.store)}/>
                                }
                         />
-                        <Route path='/dialogs/*' element={<Dialogs dialogItems={props.state.dialogsPage.dialogs}
-                                                                   messages={props.state.dialogsPage.messages}
-                                                                   newMessageText={props.state.dialogsPage.newMessageText}
-                                                                   sendNewMessage={props.sendNewMessage}
-                                                                   changeNewMessageText={props.changeNewMessageText}
-                        />}/>
+                        <Route path='/dialogs/*'
+                               element={<Dialogs dialogItems={state.dialogsPage.dialogs}
+                                                 messages={state.dialogsPage.messages}
+                                                 newMessageText={state.dialogsPage.newMessageText}
+                                                 sendNewMessage={props.store.sendNewMessage.bind(props.store)}
+                                                 changeNewMessageText={props.store.changeNewMessageText.bind(props.store)}/>}
+                        />
                         <Route path='/news' element={<News/>}/>
                         <Route path='/music' element={<Music/>}/>
                         <Route path='/videos' element={<Videos/>}/>

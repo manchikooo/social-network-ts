@@ -1,4 +1,5 @@
 import classes from './../Dialogs.module.css'
+import React from 'react'
 
 export type MessageType = {
     id: string

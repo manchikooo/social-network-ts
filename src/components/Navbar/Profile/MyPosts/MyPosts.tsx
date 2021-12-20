@@ -2,22 +2,25 @@ import React, {ChangeEvent} from "react";
 import classes from './MyPosts.module.css'
 import Post, {PostType} from "./Post/Post";
 import {v1} from "uuid";
+import {ActionsType} from "../../../../Redux/state";
 
 export type MyPostsType = {
     allPosts: Array<PostType>
-    addPostCallback: (postText: string) => void
     newPostText: string
-    changeNewTextCallback: (newText: string) => void
+    // changeNewTextCallback: (newText: string) => void
+    dispatch: (action: ActionsType) => void
 }
 
 const MyPosts = (props: MyPostsType) => {
 
     const addPost = () => {
-        props.addPostCallback(props.newPostText)
-        // alert(newPostElement.current?.value)
+        props.dispatch({type: "ADD-POST", newPostText: props.newPostText})
     }
 
-    const addNewTextToPost = (e: React.ChangeEvent<HTMLTextAreaElement>) => props.changeNewTextCallback(e.currentTarget.value)
+    const addNewTextToPost = (e: React.ChangeEvent<HTMLTextAreaElement>) => props.dispatch({
+        type: "CHANGE-NEW-POST-TEXT",
+        newText: e.currentTarget.value
+    })
 
     let postsElements = props.allPosts.map(p => <Post messageInPost={p.messageInPost}
                                                       likes={p.likes}

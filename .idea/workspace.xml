@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6fc4ea19-3f09-4790-b2e0-8b5dbe5b2424" name="Changes" comment="added 9">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/social-network-ts.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/social-network-ts.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Redux/state.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Redux/state.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Navbar/Dialogs/Message/Message.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar/Dialogs/Message/Message.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navbar/Profile/MyPosts/MyPosts.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar/Profile/MyPosts/MyPosts.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Navbar/Profile/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar/Profile/Profile.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
     </list>
@@ -150,7 +148,9 @@
       <workItem from="1638893399317" duration="13000" />
       <workItem from="1639126729309" duration="19482000" />
       <workItem from="1639418336501" duration="949000" />
-      <workItem from="1639984759515" duration="4135000" />
+      <workItem from="1639984759515" duration="4355000" />
+      <workItem from="1640016945921" duration="1223000" />
+      <workItem from="1640025103613" duration="6468000" />
     </task>
     <task id="LOCAL-00001" summary="/">
       <created>1637490873449</created>

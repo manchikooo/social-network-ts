@@ -34,6 +34,18 @@ export type StoreType = {
     sendNewMessage: () => void
     subscribe: (observer: () => void) => void
     getState: () => StateType
+    dispatch: (action: ActionsType) => void
+}
+export type ActionsType =  AddPostActionType | ChangeNewPostTextActionType
+
+type AddPostActionType = {
+    type: 'ADD-POST'
+    newPostText: string
+}
+
+type ChangeNewPostTextActionType = {
+    type: 'CHANGE-NEW-POST-TEXT'
+    newText: string
 }
 
 export const store: StoreType = {
@@ -133,42 +145,24 @@ export const store: StoreType = {
     },
     getState() {
         return this._state
+    },
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+            const newPost: PostType = {
+                id: v1(),
+                messageInPost: action.newPostText,
+                likes: 100,
+                comments: 100,
+                reposts: 100
+            }
+            this._state.profilePage.posts.unshift(newPost)
+            this._state.profilePage.newPostText = ''
+            this.rerenderEntireTree()
+        } else if (action.type === 'CHANGE-NEW-POST-TEXT'){
+            this._state.profilePage.newPostText = action.newText
+            this.rerenderEntireTree()
+        }
     }
 }
 
-// export const subscribe = (observer: () => void) => {
-//     rerenderEntireTree = observer
-// }
-// export const changeNewMessageText = (newMessage: string) => {
-//     state.dialogsPage.newMessageText = newMessage
-//     rerenderEntireTree()
-// }
-// export const sendNewMessage = () => {
-//     const newMessage: MessageType = {
-//         id: v1(), message: state.dialogsPage.newMessageText
-//     }
-//     state.dialogsPage.messages.push(newMessage)
-//     state.dialogsPage.newMessageText = ''
-//     rerenderEntireTree()
-// }
-//
-//
-// export const changeNewPostText = (newText: string) => {
-//     state.profilePage.newPostText = newText
-//     // .replace(/ +/g, ' ').trim()
-//     rerenderEntireTree()
-// }
-//
-// export const addPost = () => {
-//     const newPost: PostType = {
-//         id: v1(),
-//         messageInPost: state.profilePage.newPostText,
-//         likes: 100,
-//         comments: 100,
-//         reposts: 100
-//     }
-//     state.profilePage.posts.unshift(newPost)
-//     state.profilePage.newPostText = ''
-//     rerenderEntireTree()
-// }
 

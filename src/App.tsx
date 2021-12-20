@@ -10,10 +10,11 @@ import {Music} from "./components/Navbar/Music/Music";
 import Footer from "./components/Footer/Footer";
 import {Videos} from "./components/Navbar/Videos/Videos";
 import {Settings} from "./components/Navbar/Settings/Settings";
-import {StoreType} from "./Redux/state";
+import {ActionsType, StoreType} from "./Redux/state";
 
 type AppType = {
     store: StoreType
+    dispatch: (action: ActionsType) => void
 }
 
 function App(props: AppType) {
@@ -29,9 +30,10 @@ function App(props: AppType) {
                     <Routes>
                         <Route path='/profile'
                                element={<Profile allPosts={state.profilePage.posts}
-                                                 addPostCallback={props.store.addPost.bind(props.store)}
+                                                 dispatch={props.dispatch}
                                                  newPostText={state.profilePage.newPostText}
-                                                 changeNewTextCallback={props.store.changeNewPostText.bind(props.store)}/>
+                                                 // changeNewTextCallback={props.store.changeNewPostText.bind(props.store)}
+                               />
                                }
                         />
                         <Route path='/dialogs/*'

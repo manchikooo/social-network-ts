@@ -2,12 +2,13 @@ import React from "react";
 import MyPosts from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {PostType} from "./MyPosts/Post/Post";
+import {ActionsType} from "../../../Redux/state";
 
 type ProfileType = {
     allPosts: Array<PostType>
-    addPostCallback: (postText: string) => void
     newPostText: string
-    changeNewTextCallback: (newText: string) => void
+    // changeNewTextCallback: (newText: string) => void
+    dispatch: (action: ActionsType) => void
 }
 
 export const Profile = (props: ProfileType) => {
@@ -16,9 +17,9 @@ export const Profile = (props: ProfileType) => {
         <div>
             <ProfileInfo/>
             <MyPosts allPosts={props.allPosts}
-                     addPostCallback={props.addPostCallback}
                      newPostText={props.newPostText}
-                     changeNewTextCallback={props.changeNewTextCallback}
+                     // changeNewTextCallback={props.changeNewTextCallback}
+                     dispatch={props.dispatch}
             />
         </div>
     )

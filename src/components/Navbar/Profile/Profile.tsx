@@ -7,7 +7,6 @@ import {ActionsType} from "../../../Redux/state";
 type ProfileType = {
     allPosts: Array<PostType>
     newPostText: string
-    // changeNewTextCallback: (newText: string) => void
     dispatch: (action: ActionsType) => void
 }
 
@@ -18,7 +17,6 @@ export const Profile = (props: ProfileType) => {
             <ProfileInfo/>
             <MyPosts allPosts={props.allPosts}
                      newPostText={props.newPostText}
-                     // changeNewTextCallback={props.changeNewTextCallback}
                      dispatch={props.dispatch}
             />
         </div>

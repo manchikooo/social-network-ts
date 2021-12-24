@@ -1,4 +1,4 @@
-import {PostType} from "../components/Navbar/Profile/MyPosts/Post/Post";
+import Post, {PostType} from "../components/Navbar/Profile/MyPosts/Post/Post";
 import {DialogItemType} from "../components/Navbar/Dialogs/DialogItem/DialogsItem";
 import {MessageType} from "../components/Navbar/Dialogs/Message/Message";
 import {v1} from "uuid";
@@ -28,15 +28,13 @@ export type FriendsItemType = {
 export type StoreType = {
     _state: StateType
     rerenderEntireTree: () => void
-    changeNewPostText: (newText: string) => void
-    addPost: () => void
     changeNewMessageText: (newMessage: string) => void
     sendNewMessage: () => void
     subscribe: (observer: () => void) => void
     getState: () => StateType
     dispatch: (action: ActionsType) => void
 }
-export type ActionsType =  AddPostActionType | ChangeNewPostTextActionType
+export type ActionsType = AddPostActionType | ChangeNewPostTextActionType
 
 type AddPostActionType = {
     type: 'ADD-POST'
@@ -45,7 +43,32 @@ type AddPostActionType = {
 
 type ChangeNewPostTextActionType = {
     type: 'CHANGE-NEW-POST-TEXT'
-    newText: string
+    currentText: string
+}
+// type changePostActionType = {
+//     type: 'CHANGE-POST',
+//     newPostText: string
+// }
+
+
+export const addPostAC = (postText: string): AddPostActionType => {
+    return {
+        type: 'ADD-POST',
+        newPostText: postText
+    }
+}
+export const changePostAC = (currentText: string): ChangeNewPostTextActionType => {
+    return {
+        type: 'CHANGE-NEW-POST-TEXT',
+        currentText: currentText
+    }
+}
+
+export const sendMessageAC = (messageText: string) => {
+    return {
+        type: 'SEND-MESSAGE',
+        newPostText: messageText
+    }
 }
 
 export const store: StoreType = {
@@ -111,22 +134,34 @@ export const store: StoreType = {
     },
     rerenderEntireTree() {
     },
-    changeNewPostText(newText: string) {
-        this._state.profilePage.newPostText = newText
-        // .replace(/ +/g, ' ').trim()
-        this.rerenderEntireTree()
+
+    getState() {
+        return this._state
     },
-    addPost() {
-        const newPost: PostType = {
-            id: v1(),
-            messageInPost: this._state.profilePage.newPostText,
-            likes: 100,
-            comments: 100,
-            reposts: 100
+    subscribe(observer: () => void) {
+        this.rerenderEntireTree = observer
+    },
+    dispatch(action) {
+        switch (action.type) {
+            case 'ADD-POST':
+                const newPost: PostType = {
+                    id: v1(),
+                    messageInPost: action.newPostText,
+                    likes: 100,
+                    comments: 100,
+                    reposts: 100
+                }
+                this._state.profilePage.posts.unshift(newPost)
+                this._state.profilePage.newPostText = ''
+                this.rerenderEntireTree()
+                break;
+            case 'CHANGE-NEW-POST-TEXT':
+                this._state.profilePage.newPostText = action.currentText
+                this.rerenderEntireTree()
+                break;
+            default:
+                return store
         }
-        this._state.profilePage.posts.unshift(newPost)
-        this._state.profilePage.newPostText = ''
-        this.rerenderEntireTree()
     },
     changeNewMessageText(newMessage: string) {
         this._state.dialogsPage.newMessageText = newMessage
@@ -140,29 +175,24 @@ export const store: StoreType = {
         this._state.dialogsPage.newMessageText = ''
         this.rerenderEntireTree()
     },
-    subscribe(observer: () => void) {
-        this.rerenderEntireTree = observer
-    },
-    getState() {
-        return this._state
-    },
-    dispatch(action) {
-        if (action.type === 'ADD-POST') {
-            const newPost: PostType = {
-                id: v1(),
-                messageInPost: action.newPostText,
-                likes: 100,
-                comments: 100,
-                reposts: 100
-            }
-            this._state.profilePage.posts.unshift(newPost)
-            this._state.profilePage.newPostText = ''
-            this.rerenderEntireTree()
-        } else if (action.type === 'CHANGE-NEW-POST-TEXT'){
-            this._state.profilePage.newPostText = action.newText
-            this.rerenderEntireTree()
-        }
-    }
+
+    // changeNewPostText(newText: string) {
+    //     this._state.profilePage.newPostText = newText
+    //     // .replace(/ +/g, ' ').trim()
+    //     this.rerenderEntireTree()
+    // },
+    // addPost() {
+    //     const newPost: PostType = {
+    //         id: v1(),
+    //         messageInPost: this._state.profilePage.newPostText,
+    //         likes: 100,
+    //         comments: 100,
+    //         reposts: 100
+    //     }
+    //     this._state.profilePage.posts.unshift(newPost)
+    //     this._state.profilePage.newPostText = ''
+    //     this.rerenderEntireTree()
+    // },
 }
 
 

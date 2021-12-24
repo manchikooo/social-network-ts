@@ -32,7 +32,6 @@ function App(props: AppType) {
                                element={<Profile allPosts={state.profilePage.posts}
                                                  dispatch={props.dispatch}
                                                  newPostText={state.profilePage.newPostText}
-                                                 // changeNewTextCallback={props.store.changeNewPostText.bind(props.store)}
                                />
                                }
                         />

@@ -31,8 +31,7 @@ function App(props: AppType) {
                         <Route path='/profile'
                                element={<Profile allPosts={state.profilePage.posts}
                                                  dispatch={props.dispatch}
-                                                 newPostText={state.profilePage.newPostText}
-                               />
+                                                 newPostText={state.profilePage.newPostText}/>
                                }
                         />
                         <Route path='/dialogs/*'

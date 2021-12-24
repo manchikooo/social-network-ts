@@ -61,12 +61,8 @@ export const changePostAC = (currentText: string): changePostACType =>
 
 export const sendMessageAC = (messageText: string): sendMessageACType =>
     ({type: 'SEND-MESSAGE', newMessageText: messageText})
-export const changeMessageTextAC = (currentText: string): changeMessageACType => {
-    return {
-        type: 'CHANGE-MESSAGE-TEXT',
-        currentMessageText: currentText
-    }
-}
+export const changeMessageTextAC = (currentText: string): changeMessageACType =>
+    ({type: 'CHANGE-MESSAGE-TEXT', currentMessageText: currentText})
 
 export const store: StoreType = {
     _state: {

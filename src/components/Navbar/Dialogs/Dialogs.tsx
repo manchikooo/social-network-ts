@@ -30,8 +30,7 @@ export const Dialogs = (props: DialogsType) => {
                 {messagesElements}
                 <div>
                     <textarea value={props.newMessageText}
-                              onChange={changeNewMessageText}
-                    />
+                              onChange={changeNewMessageText}/>
                 </div>
                 <div>
                     <button onClick={sendMessage}>Send message</button>

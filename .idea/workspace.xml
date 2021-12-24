@@ -5,8 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Redux/state.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Redux/state.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Navbar/Profile/MyPosts/MyPosts.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar/Profile/MyPosts/MyPosts.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Navbar/Profile/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar/Profile/Profile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navbar/Dialogs/Dialogs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar/Dialogs/Dialogs.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +150,7 @@
       <workItem from="1640016945921" duration="1223000" />
       <workItem from="1640025103613" duration="8535000" />
       <workItem from="1640340267862" duration="5853000" />
-      <workItem from="1640354939537" duration="869000" />
+      <workItem from="1640354939537" duration="2884000" />
     </task>
     <task id="LOCAL-00001" summary="/">
       <created>1637490873449</created>

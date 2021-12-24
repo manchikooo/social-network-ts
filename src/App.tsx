@@ -36,11 +36,12 @@ function App(props: AppType) {
                                }
                         />
                         <Route path='/dialogs/*'
-                               element={<Dialogs dialogItems={state.dialogsPage.dialogs}
-                                                 messages={state.dialogsPage.messages}
-                                                 newMessageText={state.dialogsPage.newMessageText}
-                                                 sendNewMessage={props.store.sendNewMessage.bind(props.store)}
-                                                 changeNewMessageText={props.store.changeNewMessageText.bind(props.store)}/>}
+                               element={
+                                   <Dialogs dialogItems={state.dialogsPage.dialogs}
+                                            messages={state.dialogsPage.messages}
+                                            newMessageText={state.dialogsPage.newMessageText}
+                                            dispatch={props.dispatch}/>
+                               }
                         />
                         <Route path='/news' element={<News/>}/>
                         <Route path='/music' element={<Music/>}/>

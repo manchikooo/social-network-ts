@@ -28,46 +28,58 @@ export type FriendsItemType = {
 export type StoreType = {
     _state: StateType
     rerenderEntireTree: () => void
-    changeNewMessageText: (newMessage: string) => void
-    sendNewMessage: () => void
+    // changeNewMessageText: (newMessage: string) => void
+    // sendNewMessage: () => void
     subscribe: (observer: () => void) => void
     getState: () => StateType
     dispatch: (action: ActionsType) => void
 }
-export type ActionsType = AddPostActionType | ChangeNewPostTextActionType
+export type ActionsType = addPostACType | changePostACType | sendMessageACType | changeMessageACType
 
-type AddPostActionType = {
+type addPostACType = {
     type: 'ADD-POST'
     newPostText: string
 }
 
-type ChangeNewPostTextActionType = {
+type changePostACType = {
     type: 'CHANGE-NEW-POST-TEXT'
     currentText: string
 }
-// type changePostActionType = {
-//     type: 'CHANGE-POST',
-//     newPostText: string
-// }
+
+type sendMessageACType = {
+    type: 'SEND-MESSAGE'
+    newMessageText: string
+}
+
+type changeMessageACType = {
+    type: 'CHANGE-MESSAGE-TEXT',
+    currentMessageText: string
+}
 
 
-export const addPostAC = (postText: string): AddPostActionType => {
+export const addPostAC = (postText: string): addPostACType => {
     return {
         type: 'ADD-POST',
         newPostText: postText
     }
 }
-export const changePostAC = (currentText: string): ChangeNewPostTextActionType => {
+export const changePostAC = (currentText: string): changePostACType => {
     return {
         type: 'CHANGE-NEW-POST-TEXT',
         currentText: currentText
     }
 }
 
-export const sendMessageAC = (messageText: string) => {
+export const sendMessageAC = (messageText: string): sendMessageACType => {
     return {
         type: 'SEND-MESSAGE',
-        newPostText: messageText
+        newMessageText: messageText
+    }
+}
+export const changeMessageTextAC = (currentText: string): changeMessageACType => {
+    return {
+        type: 'CHANGE-MESSAGE-TEXT',
+        currentMessageText: currentText
     }
 }
 
@@ -159,22 +171,35 @@ export const store: StoreType = {
                 this._state.profilePage.newPostText = action.currentText
                 this.rerenderEntireTree()
                 break;
+            case 'SEND-MESSAGE':
+                const newMessage: MessageType = {
+                    id: v1(), message: this._state.dialogsPage.newMessageText
+                }
+                this._state.dialogsPage.messages.push(newMessage)
+                this._state.dialogsPage.newMessageText = ''
+                this.rerenderEntireTree()
+                break;
+            case 'CHANGE-MESSAGE-TEXT':
+                this._state.dialogsPage.newMessageText = action.currentMessageText
+                this.rerenderEntireTree()
+                break;
+
             default:
                 return store
         }
     },
-    changeNewMessageText(newMessage: string) {
-        this._state.dialogsPage.newMessageText = newMessage
-        this.rerenderEntireTree()
-    },
-    sendNewMessage() {
-        const newMessage: MessageType = {
-            id: v1(), message: this._state.dialogsPage.newMessageText
-        }
-        this._state.dialogsPage.messages.push(newMessage)
-        this._state.dialogsPage.newMessageText = ''
-        this.rerenderEntireTree()
-    },
+    // changeNewMessageText(newMessage: string) {
+    //     this._state.dialogsPage.newMessageText = newMessage
+    //     this.rerenderEntireTree()
+    // },
+    // sendNewMessage() {
+    //     const newMessage: MessageType = {
+    //         id: v1(), message: this._state.dialogsPage.newMessageText
+    //     }
+    //     this._state.dialogsPage.messages.push(newMessage)
+    //     this._state.dialogsPage.newMessageText = ''
+    //     this.rerenderEntireTree()
+    // },
 
     // changeNewPostText(newText: string) {
     //     this._state.profilePage.newPostText = newText

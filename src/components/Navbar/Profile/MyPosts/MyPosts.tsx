@@ -16,7 +16,7 @@ const MyPosts = (props: MyPostsType) => {
         props.dispatch(addPostAC(props.newPostText))
     }
 
-    const addNewTextToPost = (e: React.ChangeEvent<HTMLTextAreaElement>) =>
+    const changeNewPostText = (e: React.ChangeEvent<HTMLTextAreaElement>) =>
         props.dispatch(changePostAC(e.currentTarget.value))
 
     let postsElements = props.allPosts.map(p => <Post messageInPost={p.messageInPost}
@@ -32,7 +32,7 @@ const MyPosts = (props: MyPostsType) => {
             </h3>
             <div className={classes.makeNewPost}>
                 <textarea value={props.newPostText}
-                          onChange={addNewTextToPost}/>
+                          onChange={changeNewPostText}/>
                 <div>
                     <button onClick={addPost}>Add post</button>
                 </div>

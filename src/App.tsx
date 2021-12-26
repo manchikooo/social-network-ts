@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Header from "./components/Header/Header";
-import Navbar from "./components/Navbar/Navbar";
+import {Sidebar} from "./components/Navbar/Navbar";
 import Profile from "./components/Navbar/Profile/Profile";
 import {Dialogs} from "./components/Navbar/Dialogs/Dialogs";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
@@ -10,10 +10,11 @@ import {Music} from "./components/Navbar/Music/Music";
 import Footer from "./components/Footer/Footer";
 import {Videos} from "./components/Navbar/Videos/Videos";
 import {Settings} from "./components/Navbar/Settings/Settings";
-import {ActionsType, StoreType} from "./Redux/state";
+import {ActionsType, StoreType} from "./Redux/store";
+import {ReduxStoreType} from "./Redux/ReduxStore";
 
 type AppType = {
-    store: StoreType
+    store: ReduxStoreType
     dispatch: (action: ActionsType) => void
 }
 
@@ -25,20 +26,20 @@ function App(props: AppType) {
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
-                <Navbar friends={state.sidebar.friends}/>
+                <Sidebar friends={state.SidebarReducer.friends}/>
                 <div className='app-wrapper-content'>
                     <Routes>
                         <Route path='/profile'
-                               element={<Profile allPosts={state.profilePage.posts}
+                               element={<Profile allPosts={state.ProfilePageReducer.posts}
                                                  dispatch={props.dispatch}
-                                                 newPostText={state.profilePage.newPostText}/>
+                                                 newPostText={state.ProfilePageReducer.newPostText}/>
                                }
                         />
                         <Route path='/dialogs/*'
                                element={
-                                   <Dialogs dialogItems={state.dialogsPage.dialogs}
-                                            messages={state.dialogsPage.messages}
-                                            newMessageText={state.dialogsPage.newMessageText}
+                                   <Dialogs dialogItems={state.DialogsPageReducer.dialogs}
+                                            messages={state.DialogsPageReducer.messages}
+                                            newMessageText={state.DialogsPageReducer.newMessageText}
                                             dispatch={props.dispatch}/>
                                }
                         />

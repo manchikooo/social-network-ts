@@ -2,17 +2,28 @@ import {PostType} from "../components/Navbar/Profile/MyPosts/Post/Post";
 import {DialogItemType} from "../components/Navbar/Dialogs/DialogItem/DialogsItem";
 import {MessageType} from "../components/Navbar/Dialogs/Message/Message";
 import {v1} from "uuid";
+import ProfilePageReducer from "./ProfilePageReducer";
+import DialogsPageReducer from "./DialogsPageReducer";
+import {SidebarReducer} from "./SidebarReducer";
 
 export type StateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
     sidebar: SidebarType
 }
-type ProfilePageType = {
+export type StoreType = {
+    _state: StateType
+    rerenderEntireTree: () => void
+    subscribe: (observer: () => void) => void
+    getState: () => StateType
+    dispatch: (action: ActionsType) => void
+}
+
+export type ProfilePageType = {
     posts: Array<PostType>
     newPostText: string
 }
-type DialogsPageType = {
+export type DialogsPageType = {
     dialogs: Array<DialogItemType>
     messages: Array<MessageType>
     newMessageText: string
@@ -23,16 +34,6 @@ export type SidebarType = {
 export type FriendsItemType = {
     id?: string
     name: string
-}
-
-export type StoreType = {
-    _state: StateType
-    rerenderEntireTree: () => void
-    // changeNewMessageText: (newMessage: string) => void
-    // sendNewMessage: () => void
-    subscribe: (observer: () => void) => void
-    getState: () => StateType
-    dispatch: (action: ActionsType) => void
 }
 
 export type ActionsType = addPostACType | changePostACType | sendMessageACType | changeMessageACType
@@ -53,16 +54,6 @@ type changeMessageACType = {
     type: 'CHANGE-MESSAGE-TEXT',
     currentMessageText: string
 }
-
-
-export const addPostAC = (postText: string): addPostACType => ({type: 'ADD-POST', newPostText: postText})
-export const changePostAC = (currentText: string): changePostACType =>
-    ({type: 'CHANGE-NEW-POST-TEXT', currentText: currentText})
-
-export const sendMessageAC = (messageText: string): sendMessageACType =>
-    ({type: 'SEND-MESSAGE', newMessageText: messageText})
-export const changeMessageTextAC = (currentText: string): changeMessageACType =>
-    ({type: 'CHANGE-MESSAGE-TEXT', currentMessageText: currentText})
 
 export const store: StoreType = {
     _state: {
@@ -135,40 +126,12 @@ export const store: StoreType = {
         this.rerenderEntireTree = observer
     },
     dispatch(action) {
-        switch (action.type) {
-            case 'ADD-POST':
-                const newPost: PostType = {
-                    id: v1(),
-                    messageInPost: action.newPostText,
-                    likes: 100,
-                    comments: 100,
-                    reposts: 100
-                }
-                this._state.profilePage.posts.unshift(newPost)
-                this._state.profilePage.newPostText = ''
-                this.rerenderEntireTree()
-                break;
-            case 'CHANGE-NEW-POST-TEXT':
-                this._state.profilePage.newPostText = action.currentText
-                this.rerenderEntireTree()
-                break;
-            case 'SEND-MESSAGE':
-                const newMessage: MessageType = {
-                    id: v1(), message: this._state.dialogsPage.newMessageText
-                }
 
-                this._state.dialogsPage.messages = [...this._state.dialogsPage.messages, newMessage]
-                this._state.dialogsPage.newMessageText = ''
-                this.rerenderEntireTree()
-                break;
-            case 'CHANGE-MESSAGE-TEXT':
-                this._state.dialogsPage.newMessageText = action.currentMessageText
-                this.rerenderEntireTree()
-                break;
+        this._state.profilePage = ProfilePageReducer(this._state.profilePage, action)
+        this._state.dialogsPage = DialogsPageReducer(this._state.dialogsPage, action)
+        this._state.sidebar = SidebarReducer(this._state.sidebar, action)
 
-            default:
-                return store
-        }
+        this.rerenderEntireTree()
     },
 }
 

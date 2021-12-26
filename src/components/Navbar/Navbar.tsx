@@ -2,13 +2,13 @@ import React from "react";
 import classes from './Navbar.module.css'
 import {NavLink} from "react-router-dom";
 import {Friends} from "./Friends/Friends";
-import {FriendsItemType} from "../../Redux/state";
+import {FriendsItemType} from "../../Redux/store";
 
 type PropsType = {
     friends: Array<FriendsItemType>
 }
 
-const Navbar = (props: PropsType) => {
+export const Sidebar = (props: PropsType) => {
     return (<nav className={classes.nav}>
             <div className={classes.item}>
                 <NavLink to='/profile'
@@ -32,5 +32,3 @@ const Navbar = (props: PropsType) => {
         </nav>
     )
 }
-
-export default Navbar

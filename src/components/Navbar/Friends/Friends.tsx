@@ -1,7 +1,7 @@
 
 import classes from './Friends.module.css'
 import {FriendsItem} from "./FriendsItem";
-import {FriendsItemType} from "../../../Redux/state";
+import {FriendsItemType} from "../../../Redux/store";
 import React from 'react';
 
 

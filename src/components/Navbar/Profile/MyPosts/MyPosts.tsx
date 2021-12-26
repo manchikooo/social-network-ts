@@ -2,7 +2,8 @@ import React from "react";
 import classes from './MyPosts.module.css'
 import Post, {PostType} from "./Post/Post";
 import {v1} from "uuid";
-import {ActionsType, addPostAC, changePostAC} from "../../../../Redux/state";
+import {ActionsType} from "../../../../Redux/store";
+import {addPostAC, changePostAC} from "../../../../Redux/ProfilePageReducer";
 
 export type MyPostsType = {
     allPosts: Array<PostType>

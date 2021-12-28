@@ -10,7 +10,7 @@ import {Music} from "./components/Navbar/Music/Music";
 import Footer from "./components/Footer/Footer";
 import {Videos} from "./components/Navbar/Videos/Videos";
 import {Settings} from "./components/Navbar/Settings/Settings";
-import {ActionsType, StoreType} from "./Redux/store";
+import {ActionsType} from "./Redux/store";
 import {ReduxStoreType} from "./Redux/ReduxStore";
 
 type AppType = {
@@ -26,20 +26,20 @@ function App(props: AppType) {
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
-                <Sidebar friends={state.SidebarReducer.friends}/>
+                <Sidebar friends={state.Sidebar.friends}/>
                 <div className='app-wrapper-content'>
                     <Routes>
                         <Route path='/profile'
-                               element={<Profile allPosts={state.ProfilePageReducer.posts}
+                               element={<Profile allPosts={state.ProfilePage.posts}
                                                  dispatch={props.dispatch}
-                                                 newPostText={state.ProfilePageReducer.newPostText}/>
+                                                 newPostText={state.ProfilePage.newPostText}/>
                                }
                         />
                         <Route path='/dialogs/*'
                                element={
-                                   <Dialogs dialogItems={state.DialogsPageReducer.dialogs}
-                                            messages={state.DialogsPageReducer.messages}
-                                            newMessageText={state.DialogsPageReducer.newMessageText}
+                                   <Dialogs dialogItems={state.DialogsPage.dialogs}
+                                            messages={state.DialogsPage.messages}
+                                            newMessageText={state.DialogsPage.newMessageText}
                                             dispatch={props.dispatch}/>
                                }
                         />

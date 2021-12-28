@@ -12,6 +12,7 @@ import {Videos} from "./components/Navbar/Videos/Videos";
 import {Settings} from "./components/Navbar/Settings/Settings";
 import {ActionsType} from "./Redux/store";
 import {ReduxStoreType} from "./Redux/ReduxStore";
+import {DialogsContainer} from "./components/Navbar/Dialogs/DialogsContainer";
 
 type AppType = {
     store: ReduxStoreType
@@ -30,17 +31,11 @@ function App(props: AppType) {
                 <div className='app-wrapper-content'>
                     <Routes>
                         <Route path='/profile'
-                               element={<Profile allPosts={state.ProfilePage.posts}
-                                                 dispatch={props.dispatch}
-                                                 newPostText={state.ProfilePage.newPostText}/>
-                               }
+                               element={<Profile/>}
                         />
                         <Route path='/dialogs/*'
                                element={
-                                   <Dialogs dialogItems={state.DialogsPage.dialogs}
-                                            messages={state.DialogsPage.messages}
-                                            newMessageText={state.DialogsPage.newMessageText}
-                                            dispatch={props.dispatch}/>
+                                   <DialogsContainer/>
                                }
                         />
                         <Route path='/news' element={<News/>}/>

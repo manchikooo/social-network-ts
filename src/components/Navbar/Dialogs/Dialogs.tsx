@@ -7,10 +7,12 @@ import {changeMessageTextAC, sendMessageAC} from "../../../Redux/DialogsPageRedu
 
 
 type DialogsType = {
+    changeNewMessageText: (currentMessageTextValue: string) => void
+    sendMessage: () => void
     dialogItems: Array<DialogItemType>
     messages: Array<MessageType>
     newMessageText: string
-    dispatch: (action: ActionsType) => void
+
 }
 
 export const Dialogs = (props: DialogsType) => {
@@ -18,8 +20,9 @@ export const Dialogs = (props: DialogsType) => {
     let dialogsElements = props.dialogItems.map(d => <DialogItem name={d.name} id={d.id}/>)
     let messagesElements = props.messages.map(m => <Message message={m.message} id={m.id}/>)
 
-    const changeNewMessageText = (e: React.ChangeEvent<HTMLTextAreaElement>) => props.dispatch(changeMessageTextAC(e.currentTarget.value))
-     const sendMessage = () => props.dispatch(sendMessageAC(props.newMessageText))
+    const changeNewMessageText = (e: React.ChangeEvent<HTMLTextAreaElement>) =>
+        props.changeNewMessageText(e.currentTarget.value)
+    const sendMessage = () => props.sendMessage()
 
 
     return (

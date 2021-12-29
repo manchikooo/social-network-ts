@@ -8,10 +8,10 @@ export type MyPostsType = {
 
 const MyPostsContainer = (props: MyPostsType) => {
 
-    let state = store.getState()
+    let state = store.getState().ProfilePage
 
     const addPost = () => {
-        store.dispatch(addPostAC(state.ProfilePage.newPostText))
+        store.dispatch(addPostAC(state.newPostText))
     }
 
     const changeNewPostText = (currentPostTextValue: string) =>
@@ -20,8 +20,8 @@ const MyPostsContainer = (props: MyPostsType) => {
     return (
         <MyPosts changeNewPostText={changeNewPostText}
                  addPost={addPost}
-                 newPostText={state.ProfilePage.newPostText}
-                 allPosts={state.ProfilePage.posts}
+                 newPostText={state.newPostText}
+                 allPosts={state.posts}
         />
     )
 }

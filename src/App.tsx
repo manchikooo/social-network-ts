@@ -3,7 +3,7 @@ import './App.css';
 import Header from "./components/Header/Header";
 import {Sidebar} from "./components/Navbar/Navbar";
 import Profile from "./components/Navbar/Profile/Profile";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import {News} from "./components/Navbar/News/News";
 import {Music} from "./components/Navbar/Music/Music";
 import Footer from "./components/Footer/Footer";
@@ -15,7 +15,6 @@ import {DialogsContainer} from "./components/Navbar/Dialogs/DialogsContainer";
 
 type AppType = {
     store: ReduxStoreType
-    dispatch: (action: ActionsType) => void
 }
 
 function App(props: AppType) {
@@ -23,29 +22,23 @@ function App(props: AppType) {
     const state = props.store.getState()
 
     return (
-        <BrowserRouter>
-            <div className='app-wrapper'>
-                <Header/>
-                <Sidebar friends={state.Sidebar.friends}/>
-                <div className='app-wrapper-content'>
-                    <Routes>
-                        <Route path='/profile'
-                               element={<Profile/>}
-                        />
-                        <Route path='/dialogs/*'
-                               element={
-                                   <DialogsContainer/>
-                               }
-                        />
-                        <Route path='/news' element={<News/>}/>
-                        <Route path='/music' element={<Music/>}/>
-                        <Route path='/videos' element={<Videos/>}/>
-                        <Route path='/settings' element={<Settings/>}/>
-                    </Routes>
-                </div>
-                <Footer/>
+        <div className='app-wrapper'>
+            <Header/>
+            <Sidebar friends={state.Sidebar.friends}/>
+            <div className='app-wrapper-content'>
+                <Routes>
+                    <Route path='/profile'
+                           element={<Profile/>}/>
+                    <Route path='/dialogs/*'
+                           element={<DialogsContainer/>}/>
+                    <Route path='/news' element={<News/>}/>
+                    <Route path='/music' element={<Music/>}/>
+                    <Route path='/videos' element={<Videos/>}/>
+                    <Route path='/settings' element={<Settings/>}/>
+                </Routes>
             </div>
-        </BrowserRouter>
+            <Footer/>
+        </div>
     );
 }
 

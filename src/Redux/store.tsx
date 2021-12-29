@@ -2,9 +2,6 @@ import {PostType} from "../components/Navbar/Profile/MyPosts/Post/Post";
 import {DialogItemType} from "../components/Navbar/Dialogs/DialogItem/DialogsItem";
 import {MessageType} from "../components/Navbar/Dialogs/Message/Message";
 import {v1} from "uuid";
-import ProfilePageReducer from "./ProfilePageReducer";
-import DialogsPageReducer from "./DialogsPageReducer";
-import {SidebarReducer} from "./SidebarReducer";
 
 export type StateType = {
     profilePage: ProfilePageType

@@ -16,11 +16,11 @@ export type StoreType = {
     dispatch: (action: ActionsType) => void
 }
 
-export type ProfilePageType = {
+type ProfilePageType = {
     posts: Array<PostType>
     newPostText: string
 }
-export type DialogsPageType = {
+type DialogsPageType = {
     dialogs: Array<DialogItemType>
     messages: Array<MessageType>
     newMessageText: string

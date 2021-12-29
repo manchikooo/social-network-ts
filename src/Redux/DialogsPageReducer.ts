@@ -1,17 +1,30 @@
-import {MessageType} from "../components/Navbar/Dialogs/Message/Message";
 import {v1} from "uuid";
-import {ActionsType, DialogsPageType} from "./store";
+import {ActionsType} from "./store";
+
+type DialogItemType = {
+    id: string
+    name: string
+}
+type MessageType = {
+    id: string
+    message: string
+}
 
 type sendMessageACType = {
     type: 'SEND-MESSAGE'
-    newMessageText: string
 }
 type changeMessageACType = {
     type: 'CHANGE-MESSAGE-TEXT',
     currentMessageText: string
 }
 
-const initialState = {
+export type initialStateType = {
+    dialogs: Array<DialogItemType>
+    messages: Array<MessageType>
+    newMessageText: string
+}
+
+const initialState: initialStateType = {
     dialogs: [
         {id: v1(), name: 'Vlad Izh'},
         {id: v1(), name: 'Katya Tselya'},
@@ -31,7 +44,7 @@ const initialState = {
     newMessageText: 'hello'
 }
 
-const DialogsPageReducer = (state: DialogsPageType = initialState, action: ActionsType): DialogsPageType => {
+const DialogsPageReducer = (state = initialState, action: ActionsType): initialStateType => {
     switch (action.type) {
         case 'SEND-MESSAGE':
             const newMessage: MessageType = {
@@ -52,9 +65,12 @@ const DialogsPageReducer = (state: DialogsPageType = initialState, action: Actio
     }
 };
 
-export const sendMessageAC = (messageText: string): sendMessageACType =>
-    ({type: 'SEND-MESSAGE', newMessageText: messageText})
+export const sendMessageAC = (): sendMessageACType =>
+    ({type: 'SEND-MESSAGE'})
 export const changeMessageTextAC = (currentText: string): changeMessageACType =>
-    ({type: 'CHANGE-MESSAGE-TEXT', currentMessageText: currentText})
+    ({
+        type: 'CHANGE-MESSAGE-TEXT',
+        currentMessageText: currentText
+    })
 
 export default DialogsPageReducer

@@ -1,17 +1,21 @@
 import {PostType} from "../components/Navbar/Profile/MyPosts/Post/Post";
 import {v1} from "uuid";
-import {ActionsType, ProfilePageType} from "./store";
+import {ActionsType} from "./store";
 
 type addPostACType = {
     type: 'ADD-POST'
-    newPostText: string
 }
 type changePostACType = {
     type: 'CHANGE-NEW-POST-TEXT'
     currentText: string
 }
 
-let initialState = {
+export type initialStateType = {
+    posts: Array<PostType>
+    newPostText: string
+}
+
+let initialState: initialStateType = {
     posts: [
         {
             id: v1(),
@@ -44,12 +48,12 @@ let initialState = {
     newPostText: 'it-kamasutra'
 }
 
-const ProfilePageReducer = (state: ProfilePageType = initialState, action: ActionsType): ProfilePageType => {
+const ProfilePageReducer = (state = initialState, action: ActionsType): initialStateType => {
     switch (action.type) {
         case 'ADD-POST':
             const newPost: PostType = {
                 id: v1(),
-                messageInPost: action.newPostText,
+                messageInPost: state.newPostText,
                 likes: 100,
                 comments: 100,
                 reposts: 100
@@ -62,9 +66,9 @@ const ProfilePageReducer = (state: ProfilePageType = initialState, action: Actio
     }
 }
 
-export const addPostAC = (postText: string): addPostACType => ({type: 'ADD-POST', newPostText: postText})
 export const changePostAC = (currentText: string): changePostACType =>
     ({type: 'CHANGE-NEW-POST-TEXT', currentText: currentText})
+export const addPostAC = (): addPostACType => ({type: 'ADD-POST'})
 
 
 export default ProfilePageReducer

@@ -47,12 +47,10 @@ const initialState: initialStateType = {
 const DialogsPageReducer = (state = initialState, action: ActionsType): initialStateType => {
     switch (action.type) {
         case 'SEND-MESSAGE':
-            const newMessage: MessageType = {
-                id: v1(), message: state.newMessageText
-            }
+            const newMessage: MessageType = {id: v1(), message: state.newMessageText}
             return {
                 ...state,
-                messages: state.messages = [...state.messages, newMessage],
+                messages: [...state.messages, newMessage],
                 newMessageText: ''
             }
         case 'CHANGE-MESSAGE-TEXT':

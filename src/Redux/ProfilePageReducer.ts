@@ -58,9 +58,16 @@ const ProfilePageReducer = (state = initialState, action: ActionsType): initialS
                 comments: 100,
                 reposts: 100
             }
-            return {...state, posts: [newPost, ...state.posts], newPostText: ''}
+            return {
+                ...state,
+                posts: [newPost, ...state.posts],
+                newPostText: ''
+            }
         case 'CHANGE-NEW-POST-TEXT':
-            return {...state, newPostText: action.currentText}
+            return {
+                ...state,
+                newPostText: action.currentText
+            }
         default:
             return state
     }

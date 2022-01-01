@@ -11,7 +11,7 @@ import {Videos} from "./components/Navbar/Videos/Videos";
 import {Settings} from "./components/Navbar/Settings/Settings";
 import {ActionsType} from "./Redux/store";
 import {ReduxStoreType} from "./Redux/ReduxStore";
-import {SuperDialogsContainer} from "./components/Navbar/Dialogs/DialogsContainer";
+import {DialogsContainer} from "./components/Navbar/Dialogs/DialogsContainer";
 
 type AppType = {
     store: ReduxStoreType
@@ -30,7 +30,7 @@ function App(props: AppType) {
                     <Route path='/profile'
                            element={<Profile/>}/>
                     <Route path='/dialogs/*'
-                           element={<SuperDialogsContainer/>}/>
+                           element={<DialogsContainer/>}/>
                     <Route path='/news' element={<News/>}/>
                     <Route path='/music' element={<Music/>}/>
                     <Route path='/videos' element={<Videos/>}/>

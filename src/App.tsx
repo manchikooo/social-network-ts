@@ -9,9 +9,9 @@ import {Music} from "./components/Navbar/Music/Music";
 import Footer from "./components/Footer/Footer";
 import {Videos} from "./components/Navbar/Videos/Videos";
 import {Settings} from "./components/Navbar/Settings/Settings";
-import {ActionsType} from "./Redux/store";
 import {ReduxStoreType} from "./Redux/ReduxStore";
 import {DialogsContainer} from "./components/Navbar/Dialogs/DialogsContainer";
+import {UsersContainer} from "./components/Navbar/Users/UsersContainer";
 
 type AppType = {
     store: ReduxStoreType
@@ -35,6 +35,7 @@ function App(props: AppType) {
                     <Route path='/music' element={<Music/>}/>
                     <Route path='/videos' element={<Videos/>}/>
                     <Route path='/settings' element={<Settings/>}/>
+                    <Route path='/users' element={<UsersContainer/>}/>
                 </Routes>
             </div>
             <Footer/>

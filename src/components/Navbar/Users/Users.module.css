@@ -1,0 +1,68 @@
+.wrapper {
+}
+
+.userBlock {
+    display: flex;
+    padding: 10px;
+    margin-left: 30px;
+}
+
+.userAvatarAndButtonBlock {
+    padding: 10px;
+    text-align: center;
+}
+
+.userButtonFollowBlock {
+    margin-top: 10px;
+    max-height: 25px;
+}
+
+.userButtonFollowBlock button {
+    border: none;
+    background-color: #00C854;
+    border-radius: 15px;
+    padding: 7px 12px 7px 12px;
+    cursor: pointer;
+    min-width: 75px;
+}
+
+.userButtonFollowBlock button:hover {
+    background-color: #00b400;
+}
+
+.userInfoBlock {
+    border: 3px #aaacab solid;
+    border-radius: 15px;
+    margin: 10px 0 5px 20px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    min-width: 50%;
+}
+
+.userNameAndStatusBlock, .userLocationBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.fullNameStyle {
+    font-weight: bold;
+}
+.statusStyle {
+    font-style: italic;
+}
+.countryStyle {
+    font-weight: bold;
+}
+
+
+
+
+
+
+
+
+

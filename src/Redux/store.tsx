@@ -8,7 +8,7 @@ export type StateType = {
     dialogsPage: DialogsPageType
     sidebar: SidebarType
 }
-export type StoreType = {
+export type RootStateType = {
     _state: StateType
     rerenderEntireTree: () => void
     subscribe: (observer: () => void) => void
@@ -52,7 +52,7 @@ type changeMessageACType = {
     currentMessageText: string
 }
 
-export const store: StoreType = {
+export const store: RootStateType = {
     _state: {
         profilePage: {
             posts: [

@@ -17,6 +17,9 @@ export const Sidebar = (props: PropsType) => {
                 <NavLink to='/dialogs'
                          className={(navData) => navData.isActive ? classes.active : ''}>Dialogs</NavLink></div>
             <div className={classes.item}>
+                <NavLink to='/users'
+                         className={(navData) => navData.isActive ? classes.active : ''}>Users</NavLink></div>
+            <div className={classes.item}>
                 <NavLink to='/news'
                          className={(navData) => navData.isActive ? classes.active : ''}>News</NavLink></div>
             <div className={classes.item}>

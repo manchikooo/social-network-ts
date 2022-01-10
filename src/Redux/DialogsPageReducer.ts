@@ -1,5 +1,4 @@
 import {v1} from "uuid";
-import {ActionsType} from "./store";
 
 type DialogItemType = {
     id: string
@@ -8,14 +7,6 @@ type DialogItemType = {
 type MessageType = {
     id: string
     message: string
-}
-
-type sendMessageACType = {
-    type: 'SEND-MESSAGE'
-}
-type changeMessageACType = {
-    type: 'CHANGE-MESSAGE-TEXT',
-    currentMessageText: string
 }
 
 export type initialStateType = {
@@ -44,7 +35,7 @@ const initialState: initialStateType = {
     newMessageText: 'hello'
 }
 
-const DialogsPageReducer = (state = initialState, action: ActionsType): initialStateType => {
+const DialogsPageReducer = (state = initialState, action: ActionTypes): initialStateType => {
     switch (action.type) {
         case 'SEND-MESSAGE':
             const newMessage: MessageType = {id: v1(), message: state.newMessageText}
@@ -63,8 +54,18 @@ const DialogsPageReducer = (state = initialState, action: ActionsType): initialS
     }
 };
 
+type ActionTypes = sendMessageACType | changeMessageACType
+
+type sendMessageACType = {
+    type: 'SEND-MESSAGE'
+}
+
 export const sendMessageAC = (): sendMessageACType =>
     ({type: 'SEND-MESSAGE'})
+type changeMessageACType = {
+    type: 'CHANGE-MESSAGE-TEXT',
+    currentMessageText: string
+}
 export const changeMessageTextAC = (currentText: string): changeMessageACType =>
     ({
         type: 'CHANGE-MESSAGE-TEXT',

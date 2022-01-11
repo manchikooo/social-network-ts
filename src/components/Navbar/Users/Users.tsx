@@ -48,9 +48,26 @@ class Users extends React.Component<UsersPropsType, any> {
             for (let i = this.props.currentPage - 2; i < this.props.currentPage + 5; i++) {
                 pages.push(i)
             }
-        } else for (let i = this.props.currentPage - 3; i < this.props.currentPage + 4; i++) {
-            pages.push(i)
+        } else if (this.props.currentPage === pagesCount) {
+            for (let i = this.props.currentPage - 6; i < this.props.currentPage+1; i++) {
+                pages.push(i)
+            }
+        } else if (this.props.currentPage === pagesCount-1) {
+            for (let i = this.props.currentPage - 5; i < this.props.currentPage+2; i++) {
+                pages.push(i)
+            }
+        } else if (this.props.currentPage === pagesCount-2) {
+            for (let i = this.props.currentPage - 4; i < this.props.currentPage+3; i++) {
+                pages.push(i)
+            }
+        }else if (this.props.currentPage === pagesCount-3) {
+            for (let i = this.props.currentPage - 3; i < this.props.currentPage+4; i++) {
+                pages.push(i)
+            }
         }
+        else for (let i = this.props.currentPage - 3; i < this.props.currentPage + 4; i++) {
+                pages.push(i)
+            }
 
 
         // if (3 <= 3) {
@@ -80,7 +97,8 @@ class Users extends React.Component<UsersPropsType, any> {
                     })
                     }
 
-                    <span onClick={this.goToLastUserPage} className={styles.arrowsForUsersButton}
+                    <span onClick={this.goToLastUserPage}
+                          className={styles.arrowsForUsersButton}
                     >
                         ❯❯
                     </span>
@@ -120,7 +138,7 @@ class Users extends React.Component<UsersPropsType, any> {
                 </div>
                 <div className={styles.paginatorForUsers}>
                     <span onClick={this.goToFirstUserPage}
-                          className={styles.startPageForUsersButton}
+                          className={styles.arrowsForUsersButton}
                     >
                         ❮❮
                     </span>

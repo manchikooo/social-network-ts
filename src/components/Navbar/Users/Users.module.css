@@ -1,10 +1,16 @@
 .wrapper {
+    display: flex;
+    flex-direction: column;
+}
+.wrapper:nth-child(1){
+align-items: center;
 }
 
 .userBlock {
     display: flex;
     padding: 10px;
     margin-left: 30px;
+    justify-content: flex-start;
 }
 
 .userAvatarAndButtonBlock {
@@ -58,7 +64,27 @@
     font-weight: bold;
 }
 
-
+.selectedPage {
+    color: #00C854;
+    border: 1px #00C854 solid;
+    padding: 0 5px 0 5px;
+    font-weight: bold;
+}
+.unSelectedPage {
+    border: 1px #00C854 solid;
+    padding: 0 5px 0 5px;
+}
+.arrowsForUsersButton {
+    color: #00C854;
+    font-weight: bold;
+    cursor: pointer;
+    padding:0 5px 0 5px;
+}
+.paginatorForUsers {
+    padding: 10px;
+    display: flex;
+justify-content: center;
+}
 
 
 

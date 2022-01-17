@@ -21,6 +21,7 @@ export type InitialStateType = {
     totalUsersCount: number
     pageSize: number
     currentPage: number
+    isFetching: boolean
 }
 
 let initialState: InitialStateType = {
@@ -68,7 +69,8 @@ let initialState: InitialStateType = {
     ],
     totalUsersCount: 0,
     pageSize: 4,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: true,
 }
 
 const usersReducer = (state = initialState, action: ActionTypes): InitialStateType => {
@@ -96,12 +98,23 @@ const usersReducer = (state = initialState, action: ActionTypes): InitialStateTy
                 totalUsersCount: action.totalUsersCount
             }
         }
+        case 'IS-TOGGLE-LOADER': {
+            return {
+                ...state,
+                isFetching: action.isFetching
+            }
+        }
         default:
             return state
     }
 }
 
-type ActionTypes = followUnfollowUserACType | setUsersACType | setCurrentPageACType | setTotalUsersCountACType
+type ActionTypes =
+    followUnfollowUserACType
+    | setUsersACType
+    | setCurrentPageACType
+    | setTotalUsersCountACType
+    | isToggleLoaderACType
 
 export type followUnfollowUserACType = ReturnType<typeof followUnfollowUserAC>
 export const followUnfollowUserAC = (userID: string) => {
@@ -131,6 +144,13 @@ export const setTotalUsersCountAC = (totalUsersCount: number) => {
     return {
         type: 'SET-TOTAL-USERS-COUNT',
         totalUsersCount
+    } as const
+}
+export type isToggleLoaderACType = ReturnType<typeof isToggleLoaderAC>
+export const isToggleLoaderAC = (isFetching: boolean) => {
+    return {
+        type: 'IS-TOGGLE-LOADER',
+        isFetching
     } as const
 }
 

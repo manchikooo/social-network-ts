@@ -4,7 +4,7 @@ import {AppStateType} from "../../../Redux/ReduxStore";
 import {Dispatch} from "redux";
 import {
     followUnfollowUserAC,
-    InitialStateType,
+    InitialStateType, isToggleLoaderAC,
     setCurrentPageAC, setTotalUsersCountAC,
     setUsersAC,
     UserType
@@ -16,12 +16,14 @@ type MapStateToPropsType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    isFetching: boolean
 }
 type MapDispatchToPropsType = {
-    followUnfollowUserAC: (userID: string) => void
+    followUnfollowUser: (userID: string) => void
     setUsers: (users: Array<UserType>) => void
     setCurrentPage: (currentPage: number) => void
     setTotalUsersCount: (totalUsersCount: number) => void
+    isToggleLoader: (isFetching: boolean) => void
 }
 
 export type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType
@@ -32,11 +34,12 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
         pageSize: state.UsersPage.pageSize,
         totalUsersCount: state.UsersPage.totalUsersCount,
         currentPage: state.UsersPage.currentPage,
+        isFetching: state.UsersPage.isFetching,
     }
 }
 let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
-        followUnfollowUserAC: (userID: string) => {
+        followUnfollowUser: (userID: string) => {
             dispatch(followUnfollowUserAC(userID))
         },
         setUsers: (users: any) => {
@@ -47,6 +50,9 @@ let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
         },
         setTotalUsersCount: (totalUsersCount: number) => {
             dispatch(setTotalUsersCountAC(totalUsersCount))
+        },
+        isToggleLoader: (isFetching: boolean) => {
+            dispatch(isToggleLoaderAC(isFetching))
         },
     }
 }

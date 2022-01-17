@@ -31,10 +31,10 @@ export const UsersFunctionalComponent = (props: UsersPropsType) => {
                                 <div className={styles.userButtonFollowBlock}>
                                     {u.followed
                                         ? <button onClick={() => {
-                                            props.followUnfollowUserAC(u.id)
+                                            props.followUnfollowUser(u.id)
                                         }}>Unfollow</button>
                                         : <button onClick={() => {
-                                            props.followUnfollowUserAC(u.id)
+                                            props.followUnfollowUser(u.id)
                                         }}>Follow</button>}
                                 </div>
                             </div>

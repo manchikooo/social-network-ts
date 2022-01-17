@@ -116,38 +116,38 @@ type ActionTypes =
     | setTotalUsersCountACType
     | isToggleLoaderACType
 
-export type followUnfollowUserACType = ReturnType<typeof followUnfollowUserAC>
-export const followUnfollowUserAC = (userID: string) => {
+export type followUnfollowUserACType = ReturnType<typeof followUnfollowUser>
+export const followUnfollowUser = (userID: string) => {
     return {
         type: 'FOLLOW-UNFOLLOW-USER',
         userID
     } as const
 }
 
-export type setUsersACType = ReturnType<typeof setUsersAC>
-export const setUsersAC = (users: Array<UserType>) => {
+export type setUsersACType = ReturnType<typeof setUsers>
+export const setUsers = (users: Array<UserType>) => {
     return {
         type: 'SET-USERS',
         users
     } as const
 }
 
-export type setCurrentPageACType = ReturnType<typeof setCurrentPageAC>
-export const setCurrentPageAC = (currentPage: number) => {
+export type setCurrentPageACType = ReturnType<typeof setCurrentPage>
+export const setCurrentPage = (currentPage: number) => {
     return {
         type: 'SET-CURRENT-PAGE',
         currentPage
     } as const
 }
-export type setTotalUsersCountACType = ReturnType<typeof setTotalUsersCountAC>
-export const setTotalUsersCountAC = (totalUsersCount: number) => {
+export type setTotalUsersCountACType = ReturnType<typeof setTotalUsersCount>
+export const setTotalUsersCount = (totalUsersCount: number) => {
     return {
         type: 'SET-TOTAL-USERS-COUNT',
         totalUsersCount
     } as const
 }
-export type isToggleLoaderACType = ReturnType<typeof isToggleLoaderAC>
-export const isToggleLoaderAC = (isFetching: boolean) => {
+export type isToggleLoaderACType = ReturnType<typeof isToggleLoader>
+export const isToggleLoader = (isFetching: boolean) => {
     return {
         type: 'IS-TOGGLE-LOADER',
         isFetching

@@ -1,5 +1,4 @@
 import React from "react";
-import {FriendsItemType} from "../../../Redux/store";
 import classes from './Friends.module.css'
 
 type PropsType = {

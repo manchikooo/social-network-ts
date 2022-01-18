@@ -2,7 +2,7 @@ import React from "react";
 import classes from './Navbar.module.css'
 import {NavLink} from "react-router-dom";
 import {Friends} from "./Friends/Friends";
-import {FriendsItemType} from "../../Redux/store";
+import {FriendsItemType} from "../../Redux/SidebarReducer";
 
 type PropsType = {
     friends: Array<FriendsItemType>

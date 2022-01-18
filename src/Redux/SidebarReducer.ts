@@ -1,7 +1,15 @@
 import {v1} from "uuid";
-import {ActionsType, SidebarType} from "./store";
 
-const initialState = {
+export type FriendsItemType = {
+    id: string
+    name: string
+}
+
+export type initialStateType = {
+    friends: Array<FriendsItemType>
+}
+
+const initialState: initialStateType = {
     friends: [
         {id: v1(), name: 'Katya'},
         {id: v1(), name: 'Vlad'},
@@ -9,7 +17,7 @@ const initialState = {
     ]
 }
 
-export const SidebarReducer = (state: SidebarType = initialState, action: ActionsType): SidebarType => {
+export const SidebarReducer = (state = initialState, action: any): initialStateType => {
 
     return state
 };

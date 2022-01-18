@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from "./Users.module.css";
 import {InitialStateType} from "../../../Redux/UsersReducer";
+import {NavLink} from "react-router-dom";
 
 type PropsType = {
     totalUsersCount: number
@@ -84,8 +85,10 @@ export const Users = (props: PropsType) => {
                         <div className={styles.userBlock} key={u.id}>
                             <div className={styles.userAvatarAndButtonBlock}>
                                 <div className={styles.userAvatar}>
-                                    <img style={{maxHeight: '80px'}}
-                                         src={u.photos.small !== null ? u.photos.small : 'https://cdn-icons-png.flaticon.com/512/147/147144.png'}/>
+                                    <NavLink to={'/profile/' + u.id}>
+                                        <img alt='userAva' style={{maxHeight: '80px'}}
+                                             src={u.photos.small !== null ? u.photos.small : 'https://cdn-icons-png.flaticon.com/512/147/147144.png'}/>
+                                    </NavLink>
                                 </div>
                                 <div className={styles.userButtonFollowBlock}>
                                     {u.followed

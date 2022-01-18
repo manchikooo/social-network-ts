@@ -1,18 +1,32 @@
 import {PostType} from "../components/Navbar/Profile/MyPosts/Post/Post";
 import {v1} from "uuid";
-import {ActionsType} from "./store";
-
-type addPostACType = {
-    type: 'ADD-POST'
-}
-type changePostACType = {
-    type: 'CHANGE-NEW-POST-TEXT'
-    currentText: string
-}
 
 export type initialStateType = {
     posts: Array<PostType>
     newPostText: string
+    profile: UserProfileType
+}
+
+export type UserProfileType = {
+    aboutMe: string,
+    fullName: string,
+    photos: {
+        large: string
+        small: string
+    },
+    userId: number
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    contacts: {
+        "facebook": string,
+        "website": string,
+        "vk": string,
+        "twitter": string,
+        "instagram": string,
+        "youtube": string,
+        "github": string,
+        "mainLink": string
+    }
 }
 
 let initialState: initialStateType = {
@@ -45,10 +59,31 @@ let initialState: initialStateType = {
             comments: 67,
             reposts: 24,
         },],
-    newPostText: 'it-kamasutra'
+    newPostText: '',
+    profile: {
+        "aboutMe": "я круто чувак 1001%",
+        "contacts": {
+            "facebook": "facebook.com",
+            "website": '',
+            "vk": "vk.com/dimych",
+            "twitter": "https://twitter.com/@sdf",
+            "instagram": "instagra.com/sds",
+            "youtube": '',
+            "github": "github.com",
+            "mainLink": ''
+        },
+        "lookingForAJob": true,
+        "lookingForAJobDescription": "не ищу, а дурачусь",
+        "fullName": "samurai dimych",
+        "userId": 2,
+        "photos": {
+            "small": "https://social-network.samuraijs.com/activecontent/images/users/2/user-small.jpg?v=0",
+            "large": "https://social-network.samuraijs.com/activecontent/images/users/2/user.jpg?v=0"
+        }
+    }
 }
 
-const ProfilePageReducer = (state = initialState, action: ActionsType): initialStateType => {
+const ProfilePageReducer = (state = initialState, action: ActionTypes): initialStateType => {
     switch (action.type) {
         case 'ADD-POST':
             const newPost: PostType = {
@@ -68,14 +103,45 @@ const ProfilePageReducer = (state = initialState, action: ActionsType): initialS
                 ...state,
                 newPostText: action.currentText
             }
+        case 'SET-USER-PROFILE':
+            return {
+                ...state,
+                profile: action.profile
+            }
         default:
             return state
     }
 }
 
-export const changePostAC = (currentText: string): changePostACType =>
-    ({type: 'CHANGE-NEW-POST-TEXT', currentText: currentText})
-export const addPostAC = (): addPostACType => ({type: 'ADD-POST'})
+type ActionTypes = addPostACType | changePostACType | setUserProfileACType
+
+export type changePostACType = ReturnType<typeof changePostAC>
+
+export function changePostAC(currentText: string) {
+    return {
+        type: 'CHANGE-NEW-POST-TEXT',
+        currentText: currentText
+    } as const
+}
+
+export type addPostACType = ReturnType<typeof addPostAC>
+
+export function addPostAC() {
+    return {
+        type: 'ADD-POST'
+    } as const
+}
+
+
+type setUserProfileACType = ReturnType<typeof setUserProfileAC>
+
+export function setUserProfileAC(profile: UserProfileType) {
+    return {
+        type: 'SET-USER-PROFILE',
+        profile
+    } as const
+}
 
 
 export default ProfilePageReducer
+

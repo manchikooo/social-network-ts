@@ -12,6 +12,7 @@ import {Settings} from "./components/Navbar/Settings/Settings";
 import {ReduxStoreType} from "./Redux/ReduxStore";
 import {DialogsContainer} from "./components/Navbar/Dialogs/DialogsContainer";
 import {UsersContainer} from "./components/Navbar/Users/UsersContainer";
+import ProfileContainer from "./components/Navbar/Profile/ProfileContainer";
 
 type AppType = {
     store: ReduxStoreType
@@ -27,8 +28,8 @@ function App(props: AppType) {
             <Sidebar friends={state.Sidebar.friends}/>
             <div className='app-wrapper-content'>
                 <Routes>
-                    <Route path='/profile'
-                           element={<Profile/>}/>
+                    <Route path='/profile/*'
+                           element={<ProfileContainer />}/>
                     <Route path='/dialogs/*'
                            element={<DialogsContainer/>}/>
                     <Route path='/news' element={<News/>}/>

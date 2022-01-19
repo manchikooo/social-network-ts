@@ -1,9 +1,13 @@
 
-.descriptionBlock {
+.ProfileInfoBlock {
+    display: flex;
+    width: 75%;
     padding: 15px;
 }
-
-.ava {
+.avatarContainer {
+    width: 50%;
+}
+.avatarContainer img{
     width: 250px;
     border-radius: 50%;
 }

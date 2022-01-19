@@ -11,7 +11,7 @@ export const FriendsItem = (props: PropsType) => {
         <div className={classes.friends}>
             <div className={classes.friendsItems}>
                 <div className={classes.friendAva}>
-                    <img
+                    <img alt='friendItemIcon'
                         src='https://st2.depositphotos.com/3557671/11164/v/950/depositphotos_111644880-stock-illustration-man-avatar-icon-of-vector.jpg'/>
                 </div>
                 {props.name}

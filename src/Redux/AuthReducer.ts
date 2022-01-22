@@ -3,6 +3,7 @@ export type InitialStateType = {
     messages: []
     data: AuthDataType
     isAuthorized: boolean
+    photo:  string | null
 }
 
 export type AuthDataType = {
@@ -19,7 +20,8 @@ const initialState: InitialStateType = {
         email: null,
         login: null,
     },
-    isAuthorized: false
+    isAuthorized: false,
+    photo: null
 }
 
 export const AuthReducer = (state = initialState, action: ActionTypes) => {
@@ -33,11 +35,18 @@ export const AuthReducer = (state = initialState, action: ActionTypes) => {
                 isAuthorized: true,
             }
         }
+        case 'SET-AUTH-USER-PHOTO': {
+            debugger
+            return {
+                ...state,
+               photo: action.photo
+            }
+        }
         default:
             return state
     }
 }
-type ActionTypes = SetAuthUserDataType
+type ActionTypes = SetAuthUserDataType | SetAuthUserPhotoType
 
 type SetAuthUserDataType = ReturnType<typeof setAuthUserData>
 
@@ -49,5 +58,13 @@ export const setAuthUserData = (userID: number, email: string, login: string) =>
             email,
             login,
         }
+    } as const
+}
+type SetAuthUserPhotoType = ReturnType<typeof setAuthUserPhoto>
+
+export const setAuthUserPhoto = (photo: string) => {
+    return {
+        type: 'SET-AUTH-USER-PHOTO',
+        photo
     } as const
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import styles from "./Users.module.css";
 import {InitialStateType} from "../../../Redux/UsersReducer";
 import {NavLink} from "react-router-dom";
+import Paginator from "../../common/Paginator";
 
 type PropsType = {
     totalUsersCount: number
@@ -20,66 +21,16 @@ type PropsType = {
 
 export const Users = (props: PropsType) => {
 
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
-    let pages = []
-    if (props.currentPage === 1) {
-        for (let i = props.currentPage; i < props.currentPage + 7; i++) {
-            pages.push(i)
-        }
-    } else if (props.currentPage === 2) {
-        for (let i = props.currentPage - 1; i < props.currentPage + 6; i++) {
-            pages.push(i)
-        }
-    } else if (props.currentPage === 3) {
-        for (let i = props.currentPage - 2; i < props.currentPage + 5; i++) {
-            pages.push(i)
-        }
-    } else if (props.currentPage === pagesCount) {
-        for (let i = props.currentPage - 6; i < props.currentPage + 1; i++) {
-            pages.push(i)
-        }
-    } else if (props.currentPage === pagesCount - 1) {
-        for (let i = props.currentPage - 5; i < props.currentPage + 2; i++) {
-            pages.push(i)
-        }
-    } else if (props.currentPage === pagesCount - 2) {
-        for (let i = props.currentPage - 4; i < props.currentPage + 3; i++) {
-            pages.push(i)
-        }
-    } else if (props.currentPage === pagesCount - 3) {
-        for (let i = props.currentPage - 3; i < props.currentPage + 4; i++) {
-            pages.push(i)
-        }
-    } else for (let i = props.currentPage - 3; i < props.currentPage + 4; i++) {
-        pages.push(i)
-    }
-
-
     return (
         <>
-            <div className={styles.paginatorForUsers}>
-                    <span onClick={props.goToFirstUserPage}
-                          className={styles.arrowsForUsersButton}
-                    >
-                        ❮❮
-                    </span>
-
-                {pages.map((p, i) => {
-                    return <span
-                        key={i}
-                        style={{cursor: "pointer"}}
-                        className={props.currentPage === p ? styles.selectedPage : styles.unSelectedPage}
-                        onClick={() => props.onPageChanged(p)}
-                    >{p}</span>
-                })
-                }
-
-                <span onClick={props.goToLastUserPage}
-                      className={styles.arrowsForUsersButton}
-                >
-                        ❯❯
-                    </span>
-            </div>
+            <Paginator
+                totalUsersCount={props.totalUsersCount}
+                pageSize={props.pageSize}
+                currentPage={props.currentPage}
+                goToFirstUserPage={props.goToFirstUserPage}
+                goToLastUserPage={props.goToLastUserPage}
+                onPageChanged={props.onPageChanged}
+            />
             <div className={styles.wrapper}>
                 {
                     props.usersPage.users.map(u =>
@@ -115,29 +66,14 @@ export const Users = (props: PropsType) => {
                     )
                 }
             </div>
-            <div className={styles.paginatorForUsers}>
-                    <span onClick={props.goToFirstUserPage}
-                          className={styles.arrowsForUsersButton}
-                    >
-                        ❮❮
-                    </span>
-
-                {pages.map((p, i) => {
-                    return <span
-                        key={i}
-                        style={{cursor: "pointer"}}
-                        className={props.currentPage === p ? styles.selectedPage : styles.unSelectedPage}
-                        onClick={() => props.onPageChanged(p)}
-                    >{p}</span>
-                })
-                }
-
-                <span onClick={props.goToLastUserPage}
-                      className={styles.arrowsForUsersButton}
-                >
-                        ❯❯
-                    </span>
-            </div>
+            <Paginator
+                totalUsersCount={props.totalUsersCount}
+                pageSize={props.pageSize}
+                currentPage={props.currentPage}
+                goToFirstUserPage={props.goToFirstUserPage}
+                goToLastUserPage={props.goToLastUserPage}
+                onPageChanged={props.onPageChanged}
+            />
         </>
     );
 };

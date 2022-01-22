@@ -12,25 +12,39 @@ export const Sidebar = (props: PropsType) => {
     return (<nav className={classes.nav}>
             <div className={classes.item}>
                 <NavLink to='/profile'
-                         className={(navData) => navData.isActive ? classes.active : ''}>Profile</NavLink></div>
+                         activeClassName={classes.active}
+                         // className={(navData) => navData.isActive ? classes.active : ''}
+                >Profile</NavLink></div>
             <div className={classes.item}>
                 <NavLink to='/dialogs'
-                         className={(navData) => navData.isActive ? classes.active : ''}>Dialogs</NavLink></div>
+                         activeClassName={classes.active}
+                         // className={(navData) => navData.isActive ? classes.active : ''}
+                >Dialogs</NavLink></div>
             <div className={classes.item}>
                 <NavLink to='/users'
-                         className={(navData) => navData.isActive ? classes.active : ''}>Users</NavLink></div>
+                         activeClassName={classes.active}
+                         // className={(navData) => navData.isActive ? classes.active : ''}
+                >Users</NavLink></div>
             <div className={classes.item}>
                 <NavLink to='/news'
-                         className={(navData) => navData.isActive ? classes.active : ''}>News</NavLink></div>
+                         activeClassName={classes.active}
+                         // className={(navData) => navData.isActive ? classes.active : ''}
+                >News</NavLink></div>
             <div className={classes.item}>
                 <NavLink to='/music'
-                         className={(navData) => navData.isActive ? classes.active : ''}>Music</NavLink></div>
+                         activeClassName={classes.active}
+                         // className={(navData) => navData.isActive ? classes.active : ''}
+                >Music</NavLink></div>
             <div className={classes.item}>
                 <NavLink to='/videos'
-                         className={(navData) => navData.isActive ? classes.active : ''}>Videos</NavLink></div>
+                         activeClassName={classes.active}
+                         // className={(navData) => navData.isActive ? classes.active : ''}
+                >Videos</NavLink></div>
             <div className={classes.item}>
                 <NavLink to='/settings'
-                         className={(navData) => navData.isActive ? classes.active : ''}>Settings</NavLink></div>
+                         activeClassName={classes.active}
+                         // className={(navData) => navData.isActive ? classes.active : ''}
+                >Settings</NavLink></div>
             <Friends friends={props.friends}/>
         </nav>
     )

@@ -13,7 +13,9 @@ export const DialogItem = (props: DialogItemType) => {
     return (
         <div className={classes.dialog}>
             <NavLink to={path}
-                     className={(navData) => navData.isActive ? classes.active : ''}>
+                     activeClassName={classes.active}
+                     // className={(navData) => navData.isActive ? classes.active : ''}
+            >
                <img src='https://cdn-icons-png.flaticon.com/512/1184/1184457.png'/>
                 <span className={classes.itemName}>{props.name}</span>
             </NavLink>

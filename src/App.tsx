@@ -2,8 +2,7 @@ import React from 'react';
 import './App.css';
 import Header from "./components/Header/Header";
 import {Sidebar} from "./components/Navbar/Navbar";
-import Profile from "./components/Navbar/Profile/Profile";
-import {Route, Routes} from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
 import {News} from "./components/Navbar/News/News";
 import {Music} from "./components/Navbar/Music/Music";
 import Footer from "./components/Footer/Footer";
@@ -27,17 +26,17 @@ function App(props: AppType) {
             <Header/>
             <Sidebar friends={state.Sidebar.friends}/>
             <div className='app-wrapper-content'>
-                <Routes>
-                    <Route path='/profile/*'
-                           element={<ProfileContainer />}/>
-                    <Route path='/dialogs/*'
-                           element={<DialogsContainer/>}/>
-                    <Route path='/news' element={<News/>}/>
-                    <Route path='/music' element={<Music/>}/>
-                    <Route path='/videos' element={<Videos/>}/>
-                    <Route path='/settings' element={<Settings/>}/>
-                    <Route path='/users' element={<UsersContainer/>}/>
-                </Routes>
+                <Switch>
+                    <Route path='/profile/'
+                           component={ProfileContainer}/>
+                    <Route path='/dialogs/'
+                           component={DialogsContainer}/>
+                    <Route path='/news' component={News}/>
+                    <Route path='/music' component={Music}/>
+                    <Route path='/videos' component={Videos}/>
+                    <Route path='/settings' component={Settings}/>
+                    <Route path='/users' component={UsersContainer}/>
+                </Switch>
             </div>
             <Footer/>
         </div>

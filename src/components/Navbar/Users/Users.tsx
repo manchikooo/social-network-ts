@@ -64,8 +64,9 @@ export const Users = (props: PropsType) => {
                         ❮❮
                     </span>
 
-                {pages.map(p => {
+                {pages.map((p, i) => {
                     return <span
+                        key={i}
                         style={{cursor: "pointer"}}
                         className={props.currentPage === p ? styles.selectedPage : styles.unSelectedPage}
                         onClick={() => props.onPageChanged(p)}
@@ -121,8 +122,9 @@ export const Users = (props: PropsType) => {
                         ❮❮
                     </span>
 
-                {pages.map(p => {
+                {pages.map((p, i) => {
                     return <span
+                        key={i}
                         style={{cursor: "pointer"}}
                         className={props.currentPage === p ? styles.selectedPage : styles.unSelectedPage}
                         onClick={() => props.onPageChanged(p)}

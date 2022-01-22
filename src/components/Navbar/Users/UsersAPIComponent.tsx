@@ -50,7 +50,7 @@ export class UsersAPIComponent extends React.Component<UsersPropsType, any> {
                         : <Users totalUsersCount={this.props.totalUsersCount}
                                  pageSize={this.props.pageSize}
                                  currentPage={this.props.currentPage}
-                                 usersPage={this.props.UsersPage}
+                                 usersPage={this.props.usersPage}
                                  onPageChanged={this.onPageChanged}
                                  goToFirstUserPage={this.goToFirstUserPage}
                                  goToLastUserPage={this.goToLastUserPage}

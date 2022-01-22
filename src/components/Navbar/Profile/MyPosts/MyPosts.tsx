@@ -13,11 +13,16 @@ const MyPosts = (props: ProfilePagePropsType) => {
     const enterNewPostText = (e: React.ChangeEvent<HTMLTextAreaElement>) =>
         props.changeNewPostText(e.currentTarget.value)
 
-    let postsElements = props.profilePage.posts.map(p => <Post messageInPost={p.messageInPost}
-                                                      likes={p.likes}
-                                                      comments={p.comments}
-                                                      reposts={p.reposts}
-                                                      id={v1()}/>)
+    let postsElements = props.profilePage.posts.map(p =>
+        <Post
+            key={p.id}
+            messageInPost={p.messageInPost}
+            likes={p.likes}
+            comments={p.comments}
+            reposts={p.reposts}
+            id={v1()}
+        />
+    )
 
     return (
         <div className={classes.postsBlock}>

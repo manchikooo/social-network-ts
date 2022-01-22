@@ -1,11 +1,23 @@
 import React from "react";
 import classes from './Header.module.css'
+import {NavLink} from "react-router-dom";
+import {AuthDataType} from "../../Redux/AuthReducer";
 
-const Header = () => {
+type PropsType = {
+    authData: AuthDataType
+    login: string | null
+    isAuthorized: boolean
+}
+
+const Header = (props: PropsType) => {
+    console.log(props.isAuthorized, props.login, props.authData)
     return (
         <header className={classes.header}>
-            <img
+            <img alt='header-icon'
                  src='https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/LINE_logo.svg/768px-LINE_logo.svg.png'/>
+            <div className={classes.loginBlock}>
+                {props.isAuthorized ? <div>{props.login}</div> : <NavLink to={'/login'}>Login</NavLink>}
+            </div>
         </header>
     )
 }

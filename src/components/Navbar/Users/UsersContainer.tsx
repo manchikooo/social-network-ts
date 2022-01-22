@@ -12,7 +12,7 @@ import {
 import {UsersAPIComponent} from "./UsersAPIComponent";
 
 type MapStateToPropsType = {
-    UsersPage: InitialStateType
+    usersPage: InitialStateType
     pageSize: number
     totalUsersCount: number
     currentPage: number
@@ -30,11 +30,11 @@ export type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType
 
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
-        UsersPage: state.UsersPage,
-        pageSize: state.UsersPage.pageSize,
-        totalUsersCount: state.UsersPage.totalUsersCount,
-        currentPage: state.UsersPage.currentPage,
-        isFetching: state.UsersPage.isFetching,
+        usersPage: state.usersPage,
+        pageSize: state.usersPage.pageSize,
+        totalUsersCount: state.usersPage.totalUsersCount,
+        currentPage: state.usersPage.currentPage,
+        isFetching: state.usersPage.isFetching,
     }
 }
 // let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {

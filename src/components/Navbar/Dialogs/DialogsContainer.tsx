@@ -17,7 +17,7 @@ export type DialogsPropsType = MapStatePropsType & MapDispatchToPropsType
 
 let mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
-        dialogsPage: state.DialogsPage
+        dialogsPage: state.dialogsPage
     }
 }
 let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {

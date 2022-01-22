@@ -18,7 +18,7 @@ export type ProfilePagePropsType = mapStateToPropsType & mapDispatchToPropsType
 
 let mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
-        profilePage: state.ProfilePage
+        profilePage: state.profilePage
     }
 }
 let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {

@@ -1,7 +1,7 @@
 import React from "react";
 import classes from './ProfileInfo.module.css'
 import {UserProfileType} from "../../../../Redux/ProfilePageReducer";
-import {ProfilePropsType} from "../ProfileContainer";
+import {CommonPropsType} from "../ProfileContainer";
 
 type ProfileInfoPropsType = {
     profile: UserProfileType

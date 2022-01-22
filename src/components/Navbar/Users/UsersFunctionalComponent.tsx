@@ -5,7 +5,7 @@ import axios from "axios";
 
 export const UsersFunctionalComponent = (props: UsersPropsType) => {
     let getUsers = () => {
-        if (props.UsersPage.users.length === 0) {
+        if (props.usersPage.users.length === 0) {
 
             axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
                 props.setUsers(response.data.items)
@@ -21,7 +21,7 @@ export const UsersFunctionalComponent = (props: UsersPropsType) => {
             <button onClick={getUsers}>Get users</button>
             <div className={styles.wrapper}>
                 {
-                    props.UsersPage.users.map(u =>
+                    props.usersPage.users.map(u =>
                         <div className={styles.userBlock} key={u.id}>
                             <div className={styles.userAvatarAndButtonBlock}>
                                 <div className={styles.userAvatar}>

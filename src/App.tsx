@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import Header from "./components/Header/Header";
 import {Sidebar} from "./components/Navbar/Navbar";
 import {Route, Switch} from "react-router-dom";
 import {News} from "./components/Navbar/News/News";
@@ -12,6 +11,7 @@ import {ReduxStoreType} from "./Redux/ReduxStore";
 import {DialogsContainer} from "./components/Navbar/Dialogs/DialogsContainer";
 import {UsersContainer} from "./components/Navbar/Users/UsersContainer";
 import ProfileContainer from "./components/Navbar/Profile/ProfileContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 type AppType = {
     store: ReduxStoreType
@@ -23,8 +23,8 @@ function App(props: AppType) {
 
     return (
         <div className='app-wrapper'>
-            <Header/>
-            <Sidebar friends={state.Sidebar.friends}/>
+            <HeaderContainer/>
+            <Sidebar friends={state.sidebar.friends}/>
             <div className='app-wrapper-content'>
                 <Switch>
                     <Route path='/profile/:userID?'

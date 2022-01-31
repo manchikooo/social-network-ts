@@ -36,7 +36,6 @@ export const AuthReducer = (state = initialState, action: ActionTypes) => {
             }
         }
         case 'SET-AUTH-USER-PHOTO': {
-            debugger
             return {
                 ...state,
                photo: action.photo

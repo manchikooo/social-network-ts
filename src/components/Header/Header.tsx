@@ -12,7 +12,6 @@ type PropsType = {
 
 const Header = (props: PropsType) => {
     let defaultAvatar = 'https://icon-library.com/images/avatar-icon/avatar-icon-4.jpg'
-    console.log(props.isAuthorized, props.login, props.authData, props.profilePhoto)
     return (
         <header className={classes.header}>
             <img alt='header-icon'

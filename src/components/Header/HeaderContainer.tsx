@@ -35,7 +35,6 @@ export class HeaderContainer extends React.Component<PropsType, any> {
     }
 
     render() {
-        console.log(this.props)
         return (
             <>
                 <Header {...this.props}/>

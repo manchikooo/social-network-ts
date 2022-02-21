@@ -7,7 +7,7 @@ type PaginatorPropsType = {
     currentPage: number
     goToFirstUserPage: () => void
     goToLastUserPage: () => void
-    onPageChanged:(pageNumber: number) => void
+    onPageChanged: (pageNumber: number) => void
 }
 
 const Paginator = (props: PaginatorPropsType) => {

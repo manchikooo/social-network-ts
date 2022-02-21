@@ -3,7 +3,7 @@ import styles from "./Users.module.css";
 import {InitialStateType} from "../../../Redux/UsersReducer";
 import {NavLink} from "react-router-dom";
 import Paginator from "../../common/Paginator";
-import axios from "axios";
+import {USERS_API} from "../../../api/api";
 
 type PropsType = {
     totalUsersCount: number
@@ -46,27 +46,17 @@ export const Users = (props: PropsType) => {
                                 <div className={styles.userButtonFollowBlock}>
                                     {u.followed
                                         ? <button onClick={() => {
-                                            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-                                                withCredentials: true,
-                                                headers: {
-                                                    'API-KEY': '38693d4c-6e14-43e3-bc08-570c5b5670c4'
-                                                }
-                                            })
-                                                .then(response => {
-                                                    if (response.data.resultCode === 0) {
+                                            USERS_API.unfollowUser(u.id)
+                                                .then(resultCode => {
+                                                    if (resultCode === 0) {
                                                         props.followUnfollowUserAC(u.id)
                                                     }
                                                 })
                                         }}>Unfollow</button>
                                         : <button onClick={() => {
-                                            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
-                                                withCredentials: true,
-                                                headers: {
-                                                    'API-KEY': '38693d4c-6e14-43e3-bc08-570c5b5670c4'
-                                                }
-                                            })
-                                                .then(response => {
-                                                    if (response.data.resultCode === 0) {
+                                            USERS_API.followUser(u.id)
+                                                .then(resultCode => {
+                                                    if (resultCode === 0) {
                                                         props.followUnfollowUserAC(u.id)
                                                     }
                                                 })

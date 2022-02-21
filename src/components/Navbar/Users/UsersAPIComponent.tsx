@@ -62,9 +62,9 @@ export class UsersAPIComponent extends React.Component<UsersPropsType, any> {
                                  setUsers={this.props.setUsers}
                                  setCurrentPage={this.props.setCurrentPage}
                                  setTotalUsersCount={this.props.setTotalUsersCount}
+                                 isToggleFollowingInProgress={this.props.isToggleFollowingInProgress}
                         />
                 }
-
             </>
         )
     }

@@ -1,11 +1,13 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {AppStateType} from "../../../Redux/ReduxStore";
-import {Dispatch} from "redux";
 import {
     followUnfollowUser,
-    InitialStateType, isToggleLoader,
-    setCurrentPage, setTotalUsersCount,
+    InitialStateType,
+    isToggleFollowingInProgress,
+    isToggleLoader,
+    setCurrentPage,
+    setTotalUsersCount,
     setUsers,
     UserType
 } from "../../../Redux/UsersReducer";
@@ -17,6 +19,7 @@ type MapStateToPropsType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
+    isFollowingInProgress: Array<string>
 }
 type MapDispatchToPropsType = {
     followUnfollowUser: (userID: string) => void
@@ -24,6 +27,7 @@ type MapDispatchToPropsType = {
     setCurrentPage: (currentPage: number) => void
     setTotalUsersCount: (totalUsersCount: number) => void
     isToggleLoader: (isFetching: boolean) => void
+    isToggleFollowingInProgress: (isFollowingInProgress: boolean, userId: string) => void
 }
 
 export type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType
@@ -35,27 +39,16 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
+        isFollowingInProgress: state.usersPage.isFollowingInProgress,
     }
 }
-// let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
-//     return {
-//         followUnfollowUser: (userID: string) => {
-//             dispatch(followUnfollowUserAC(userID))
-//         },
-//         setUsers: (users: any) => {
-//             dispatch(setUsersAC(users))
-//         },
-//         setCurrentPage: (currentPage: number) => {
-//             dispatch(setCurrentPageAC(currentPage))
-//         },
-//         setTotalUsersCount: (totalUsersCount: number) => {
-//             dispatch(setTotalUsersCountAC(totalUsersCount))
-//         },
-//         isToggleLoader: (isFetching: boolean) => {
-//             dispatch(isToggleLoaderAC(isFetching))
-//         },
-//     }
-// }
 
 export const UsersContainer = connect(mapStateToProps,
-    {followUnfollowUser, setUsers, setCurrentPage, setTotalUsersCount, isToggleLoader,})(UsersAPIComponent)
+    {
+        followUnfollowUser,
+        setUsers,
+        setCurrentPage,
+        setTotalUsersCount,
+        isToggleLoader,
+        isToggleFollowingInProgress
+    })(UsersAPIComponent)

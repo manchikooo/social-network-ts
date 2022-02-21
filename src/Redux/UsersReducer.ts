@@ -1,5 +1,3 @@
-import {v1} from "uuid";
-
 export type UserType = {
     id: string
     name: string
@@ -22,55 +20,16 @@ export type InitialStateType = {
     pageSize: number
     currentPage: number
     isFetching: boolean
+    isFollowingInProgress: Array<string>
 }
 
 let initialState: InitialStateType = {
-    users: [
-        //     {
-        //         id: v1(),
-        //         followed: false,
-        //         fullName: 'Dmitry',
-        //         status: 'status 1',
-        //         location: {
-        //             city: 'Minsk',
-        //             country: 'Belarus'
-        //         }
-        //     },
-        //     {
-        //         id: v1(),
-        //         followed: false,
-        //         fullName: `Vlad`,
-        //         status: 'status 2',
-        //         location: {
-        //             city: 'Kirov',
-        //             country: 'Russia'
-        //         }
-        //     },
-        //     {
-        //         id: v1(),
-        //         followed: true,
-        //         fullName: `Katya`,
-        //         status: 'status 3',
-        //         location: {
-        //             city: 'Kirov',
-        //             country: 'Russia'
-        //         }
-        //     },
-        //     {
-        //         id: v1(),
-        //         followed: true,
-        //         fullName: `Elena`,
-        //         status: 'status 4',
-        //         location: {
-        //             city: 'Moscow',
-        //             country: 'Russia'
-        //         }
-        //     },
-    ],
+    users: [],
     totalUsersCount: 0,
     pageSize: 4,
     currentPage: 1,
     isFetching: true,
+    isFollowingInProgress: []
 }
 
 const usersReducer = (state = initialState, action: ActionTypes): InitialStateType => {
@@ -104,6 +63,12 @@ const usersReducer = (state = initialState, action: ActionTypes): InitialStateTy
                 isFetching: action.isFetching
             }
         }
+        case 'IS-FOLLOWING-IN-PROGRESS': {
+            return {
+                ...state,
+                isFollowingInProgress: action.isFollowingInProgress ? [...state.isFollowingInProgress, action.userId] : state.isFollowingInProgress.filter(id => id !== action.userId)
+            }
+        }
         default:
             return state
     }
@@ -115,6 +80,7 @@ type ActionTypes =
     | setCurrentPageACType
     | setTotalUsersCountACType
     | isToggleLoaderACType
+    | isToggleFollowingInProgressACType
 
 export type followUnfollowUserACType = ReturnType<typeof followUnfollowUser>
 export const followUnfollowUser = (userID: string) => {
@@ -151,6 +117,14 @@ export const isToggleLoader = (isFetching: boolean) => {
     return {
         type: 'IS-TOGGLE-LOADER',
         isFetching
+    } as const
+}
+export type isToggleFollowingInProgressACType = ReturnType<typeof isToggleFollowingInProgress>
+export const isToggleFollowingInProgress = (isFollowingInProgress: boolean, userId: string) => {
+    return {
+        type: 'IS-FOLLOWING-IN-PROGRESS',
+        isFollowingInProgress,
+        userId
     } as const
 }
 

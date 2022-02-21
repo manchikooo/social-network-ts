@@ -17,6 +17,7 @@ type PropsType = {
     setUsers: (users: any) => void
     setCurrentPage: (currentPage: number) => void
     setTotalUsersCount: (totalUsersCount: number) => void
+    isToggleFollowingInProgress: (isFollowingInProgress: boolean, userId: string) => void
 }
 
 
@@ -45,22 +46,30 @@ export const Users = (props: PropsType) => {
                                 </div>
                                 <div className={styles.userButtonFollowBlock}>
                                     {u.followed
-                                        ? <button onClick={() => {
-                                            USERS_API.unfollowUser(u.id)
-                                                .then(resultCode => {
-                                                    if (resultCode === 0) {
-                                                        props.followUnfollowUserAC(u.id)
-                                                    }
-                                                })
-                                        }}>Unfollow</button>
-                                        : <button onClick={() => {
-                                            USERS_API.followUser(u.id)
-                                                .then(resultCode => {
-                                                    if (resultCode === 0) {
-                                                        props.followUnfollowUserAC(u.id)
-                                                    }
-                                                })
-                                        }}>Follow</button>}
+                                        ? <button
+                                            disabled={props.usersPage.isFollowingInProgress.some(id => id === u.id)}
+                                            onClick={() => {
+                                                props.isToggleFollowingInProgress(true, u.id)
+                                                USERS_API.unfollowUser(u.id)
+                                                    .then(resultCode => {
+                                                        if (resultCode === 0) {
+                                                            props.followUnfollowUserAC(u.id)
+                                                        }
+                                                        props.isToggleFollowingInProgress(false, u.id)
+                                                    })
+                                            }}>Unfollow</button>
+                                        : <button
+                                            disabled={props.usersPage.isFollowingInProgress.some(id => id === u.id)}
+                                            onClick={() => {
+                                                props.isToggleFollowingInProgress(true, u.id)
+                                                USERS_API.followUser(u.id)
+                                                    .then(resultCode => {
+                                                        if (resultCode === 0) {
+                                                            props.followUnfollowUserAC(u.id)
+                                                        }
+                                                        props.isToggleFollowingInProgress(false, u.id)
+                                                    })
+                                            }}>Follow</button>}
                                 </div>
                             </div>
                             <div className={styles.userInfoBlock}>

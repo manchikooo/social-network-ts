@@ -3,7 +3,6 @@ import styles from "./Users.module.css";
 import {InitialStateType} from "../../../Redux/UsersReducer";
 import {NavLink} from "react-router-dom";
 import Paginator from "../../common/Paginator";
-import {USERS_API} from "../../../api/api";
 
 type PropsType = {
     totalUsersCount: number
@@ -13,11 +12,10 @@ type PropsType = {
     onPageChanged: (pageNumber: number) => void
     goToFirstUserPage: () => void
     goToLastUserPage: () => void
-    followUnfollowUserAC: (userID: string) => void
+    followUnfollowTC: (userID: string, followValue: boolean) => void
     setUsers: (users: any) => void
     setCurrentPage: (currentPage: number) => void
     setTotalUsersCount: (totalUsersCount: number) => void
-    isToggleFollowingInProgress: (isFollowingInProgress: boolean, userId: string) => void
 }
 
 
@@ -49,26 +47,12 @@ export const Users = (props: PropsType) => {
                                         ? <button
                                             disabled={props.usersPage.isFollowingInProgress.some(id => id === u.id)}
                                             onClick={() => {
-                                                props.isToggleFollowingInProgress(true, u.id)
-                                                USERS_API.unfollowUser(u.id)
-                                                    .then(resultCode => {
-                                                        if (resultCode === 0) {
-                                                            props.followUnfollowUserAC(u.id)
-                                                        }
-                                                        props.isToggleFollowingInProgress(false, u.id)
-                                                    })
+                                               props.followUnfollowTC(u.id, false)
                                             }}>Unfollow</button>
                                         : <button
                                             disabled={props.usersPage.isFollowingInProgress.some(id => id === u.id)}
                                             onClick={() => {
-                                                props.isToggleFollowingInProgress(true, u.id)
-                                                USERS_API.followUser(u.id)
-                                                    .then(resultCode => {
-                                                        if (resultCode === 0) {
-                                                            props.followUnfollowUserAC(u.id)
-                                                        }
-                                                        props.isToggleFollowingInProgress(false, u.id)
-                                                    })
+                                                props.followUnfollowTC(u.id, true)
                                             }}>Follow</button>}
                                 </div>
                             </div>

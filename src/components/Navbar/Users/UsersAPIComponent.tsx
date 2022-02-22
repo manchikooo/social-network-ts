@@ -3,46 +3,22 @@ import {UsersPropsType} from "./UsersContainer";
 import {Users} from "./Users";
 import {Preloader} from "../../common/preloader/Preloader";
 import {USERS_API} from "../../../api/api";
+import {followUnfollowTC} from "../../../Redux/UsersReducer";
 
 export class UsersAPIComponent extends React.Component<UsersPropsType, any> {
 
     componentDidMount() {
-        this.props.isToggleLoader(true)
-        USERS_API.getUsers(this.props.currentPage, this.props.pageSize)
-            .then(data => {
-                this.props.isToggleLoader(false)
-                this.props.setUsers(data.items)
-                this.props.setTotalUsersCount(data.totalCount)
-            })
+        this.props.getUsersTC(this.props.currentPage, this.props.pageSize)
     }
-
     onPageChanged = (pageNumber: number) => {
-        this.props.setCurrentPage(pageNumber)
-        this.props.isToggleLoader(true)
-        USERS_API.getUsers(pageNumber, this.props.pageSize)
-            .then(data => {
-                this.props.isToggleLoader(false)
-                this.props.setUsers(data.items)
-            })
+        this.props.getUsersTC(pageNumber, this.props.pageSize)
     }
     goToFirstUserPage = () => {
-        this.props.isToggleLoader(true)
-        this.props.setCurrentPage(1)
-        USERS_API.getUsers(1, this.props.pageSize)
-            .then(data => {
-                this.props.isToggleLoader(false)
-                this.props.setUsers(data.items)
-            })
+        this.props.getUsersTC(1, this.props.pageSize)
     }
     goToLastUserPage = () => {
-        this.props.isToggleLoader(true)
         let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
-        this.props.setCurrentPage(pagesCount)
-        USERS_API.getUsers(pagesCount, this.props.pageSize)
-            .then(data => {
-                this.props.isToggleLoader(false)
-                this.props.setUsers(data.items)
-            })
+        this.props.getUsersTC(pagesCount, this.props.pageSize)
     }
 
     render() {
@@ -58,11 +34,10 @@ export class UsersAPIComponent extends React.Component<UsersPropsType, any> {
                                  onPageChanged={this.onPageChanged}
                                  goToFirstUserPage={this.goToFirstUserPage}
                                  goToLastUserPage={this.goToLastUserPage}
-                                 followUnfollowUserAC={this.props.followUnfollowUser}
+                                 followUnfollowTC={this.props.followUnfollowTC}
                                  setUsers={this.props.setUsers}
                                  setCurrentPage={this.props.setCurrentPage}
                                  setTotalUsersCount={this.props.setTotalUsersCount}
-                                 isToggleFollowingInProgress={this.props.isToggleFollowingInProgress}
                         />
                 }
             </>

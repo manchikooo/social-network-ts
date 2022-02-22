@@ -1,3 +1,6 @@
+import {USERS_API} from "../api/api";
+import {Dispatch} from "redux";
+
 export type UserType = {
     id: string
     name: string
@@ -37,7 +40,7 @@ const usersReducer = (state = initialState, action: ActionTypes): InitialStateTy
         case 'FOLLOW-UNFOLLOW-USER':
             return {
                 ...state,
-                users: [...state.users].map(u => u.id === action.userID ? {...u, followed: !u.followed} : u)
+                users: state.users.map(u => u.id === action.userID ? {...u, followed: action.followValue} : u)
             }
         case 'SET-USERS': {
             return {
@@ -66,7 +69,8 @@ const usersReducer = (state = initialState, action: ActionTypes): InitialStateTy
         case 'IS-FOLLOWING-IN-PROGRESS': {
             return {
                 ...state,
-                isFollowingInProgress: action.isFollowingInProgress ? [...state.isFollowingInProgress, action.userId] : state.isFollowingInProgress.filter(id => id !== action.userId)
+                isFollowingInProgress: action.isFollowingInProgress ? [...state.isFollowingInProgress, action.userId] :
+                    state.isFollowingInProgress.filter(id => id !== action.userId)
             }
         }
         default:
@@ -83,13 +87,13 @@ type ActionTypes =
     | isToggleFollowingInProgressACType
 
 export type followUnfollowUserACType = ReturnType<typeof followUnfollowUser>
-export const followUnfollowUser = (userID: string) => {
+export const followUnfollowUser = (userID: string, followValue: boolean) => {
     return {
         type: 'FOLLOW-UNFOLLOW-USER',
-        userID
+        userID,
+        followValue,
     } as const
 }
-
 export type setUsersACType = ReturnType<typeof setUsers>
 export const setUsers = (users: Array<UserType>) => {
     return {
@@ -97,7 +101,6 @@ export const setUsers = (users: Array<UserType>) => {
         users
     } as const
 }
-
 export type setCurrentPageACType = ReturnType<typeof setCurrentPage>
 export const setCurrentPage = (currentPage: number) => {
     return {
@@ -128,5 +131,40 @@ export const isToggleFollowingInProgress = (isFollowingInProgress: boolean, user
     } as const
 }
 
+export const getUsersTC = (currentPage: number, pageSize: number) => {
+    return (dispatch: Dispatch) => {
+        dispatch(isToggleLoader(true))
+        USERS_API.getUsers(currentPage, pageSize)
+            .then(data => {
+                dispatch(isToggleLoader(false))
+                dispatch(setUsers(data.items))
+                dispatch(setTotalUsersCount(data.totalCount))
+                dispatch(setCurrentPage(currentPage))
+            })
+    }
+}
+export const followUnfollowTC = (userId: string, followValue: boolean) => {
+    return (dispatch: Dispatch) => {
+        console.log('statr')
+        dispatch(isToggleFollowingInProgress(true, userId))
+        if (followValue) {
+            USERS_API.followUser(userId)
+                .then(resultCode => {
+                    if (resultCode === 0) {
+                        dispatch(followUnfollowUser(userId, followValue))
+                    }
+                    dispatch(isToggleFollowingInProgress(false, userId))
+                })
+        } else {
+            USERS_API.unfollowUser(userId)
+                .then(resultCode => {
+                    if (resultCode === 0) {
+                        dispatch(followUnfollowUser(userId, followValue))
+                    }
+                    dispatch(isToggleFollowingInProgress(false, userId))
+                })
+        }
+    }
+}
 
 export default usersReducer

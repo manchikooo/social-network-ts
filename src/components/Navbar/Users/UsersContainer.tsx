@@ -2,13 +2,12 @@ import React from 'react';
 import {connect} from "react-redux";
 import {AppStateType} from "../../../Redux/ReduxStore";
 import {
+    followUnfollowTC,
     followUnfollowUser,
+    getUsersTC,
     InitialStateType,
     isToggleFollowingInProgress,
-    isToggleLoader,
     setCurrentPage,
-    setTotalUsersCount,
-    setUsers,
     UserType
 } from "../../../Redux/UsersReducer";
 import {UsersAPIComponent} from "./UsersAPIComponent";
@@ -22,12 +21,13 @@ type MapStateToPropsType = {
     isFollowingInProgress: Array<string>
 }
 type MapDispatchToPropsType = {
-    followUnfollowUser: (userID: string) => void
+    followUnfollowTC: (userID: string, followValue: boolean) => void
     setUsers: (users: Array<UserType>) => void
     setCurrentPage: (currentPage: number) => void
     setTotalUsersCount: (totalUsersCount: number) => void
     isToggleLoader: (isFetching: boolean) => void
     isToggleFollowingInProgress: (isFollowingInProgress: boolean, userId: string) => void
+    getUsersTC: (currentPage: number, pageSize: number) => void
 }
 
 export type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType
@@ -45,10 +45,7 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 
 export const UsersContainer = connect(mapStateToProps,
     {
-        followUnfollowUser,
-        setUsers,
         setCurrentPage,
-        setTotalUsersCount,
-        isToggleLoader,
-        isToggleFollowingInProgress
+        getUsersTC,
+        followUnfollowTC,
     })(UsersAPIComponent)

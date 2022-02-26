@@ -7,6 +7,7 @@ import {RouteComponentProps, withRouter} from "react-router-dom";
 
 type MapStateToPropsType = {
     profile: UserProfileType
+    isAuth: boolean
 }
 type MapDispatchToPropsType = {
     getUserProfileTC: (userId: string) => void
@@ -33,7 +34,9 @@ class ProfileContainer extends React.Component<PropsType, any> {
     render() {
         return (
             <div>
-                <Profile profile={this.props.profile}/>
+                <Profile
+                    profile={this.props.profile}
+                    isAuth={this.props.isAuth}/>
             </div>
         )
     }
@@ -41,7 +44,8 @@ class ProfileContainer extends React.Component<PropsType, any> {
 
 let MapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
-        profile: state.profilePage.profile
+        profile: state.profilePage.profile,
+        isAuth: state.auth.isAuthorized
     }
 }
 

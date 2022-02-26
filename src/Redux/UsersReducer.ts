@@ -1,4 +1,4 @@
-import {USERS_API} from "../api/api";
+import {USERS_API} from "../api/users_api";
 import {Dispatch} from "redux";
 
 export type UserType = {
@@ -145,7 +145,6 @@ export const getUsersTC = (currentPage: number, pageSize: number) => {
 }
 export const followUnfollowTC = (userId: string, followValue: boolean) => {
     return (dispatch: Dispatch) => {
-        console.log('statr')
         dispatch(isToggleFollowingInProgress(true, userId))
         if (followValue) {
             USERS_API.followUser(userId)

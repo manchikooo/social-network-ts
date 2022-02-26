@@ -12,6 +12,7 @@ import {DialogsContainer} from "./components/Navbar/Dialogs/DialogsContainer";
 import {UsersContainer} from "./components/Navbar/Users/UsersContainer";
 import ProfileContainer from "./components/Navbar/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import {LoginPage} from "./components/Login/LoginPage";
 
 type AppType = {
     store: ReduxStoreType
@@ -36,6 +37,7 @@ function App(props: AppType) {
                     <Route path='/videos' component={Videos}/>
                     <Route path='/settings' component={Settings}/>
                     <Route path='/users' component={UsersContainer}/>
+                    <Route path='/login' component={LoginPage}/>
                 </Switch>
             </div>
             <Footer/>

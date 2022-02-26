@@ -7,6 +7,7 @@ import {Dispatch} from "redux";
 
 type MapStatePropsType = {
     dialogsPage: initialStateType
+    isAuth: boolean
 }
 type MapDispatchToPropsType = {
     changeNewMessageText: (currentMessageTextValue: string) => void
@@ -17,7 +18,8 @@ export type DialogsPropsType = MapStatePropsType & MapDispatchToPropsType
 
 let mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
-        dialogsPage: state.dialogsPage
+        dialogsPage: state.dialogsPage,
+        isAuth: state.auth.isAuthorized
     }
 }
 let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
@@ -32,27 +34,3 @@ let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
 }
 
 export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
-
-// export const DialogsContainer = () => {
-//
-//     return (
-//         <StoreContext.Consumer>{
-//             (store) => {
-//                 let state = store.getState().DialogsPage
-//
-//                 const changeNewMessageText = (currentMessageTextValue: string) =>
-//                     store.dispatch(changeMessageTextAC(currentMessageTextValue))
-//
-//                 const sendMessage = () => store.dispatch(sendMessageAC(state.newMessageText))
-//
-//                 return <Dialogs dialogItems={state.dialogs}
-//                                 messages={state.messages}
-//                                 newMessageText={state.newMessageText}
-//                                 changeNewMessageText={changeNewMessageText}
-//                                 sendMessage={sendMessage}
-//                 />
-//             }
-//         }
-//         </StoreContext.Consumer>
-//     )
-// }

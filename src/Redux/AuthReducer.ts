@@ -1,9 +1,13 @@
+import {Dispatch} from "redux";
+import {AUTH_API} from "../api/auth_api";
+import axios from "axios";
+
 export type InitialStateType = {
     resultCode: number
     messages: []
     data: AuthDataType
     isAuthorized: boolean
-    photo:  string | null
+    photo: string | null
 }
 
 export type AuthDataType = {
@@ -38,7 +42,7 @@ export const AuthReducer = (state = initialState, action: ActionTypes) => {
         case 'SET-AUTH-USER-PHOTO': {
             return {
                 ...state,
-               photo: action.photo
+                photo: action.photo
             }
         }
         default:
@@ -60,10 +64,23 @@ export const setAuthUserData = (userID: number, email: string, login: string) =>
     } as const
 }
 type SetAuthUserPhotoType = ReturnType<typeof setAuthUserPhoto>
-
 export const setAuthUserPhoto = (photo: string) => {
     return {
         type: 'SET-AUTH-USER-PHOTO',
         photo
     } as const
+}
+
+export const setAuthDataTC = () => (dispatch: Dispatch) => {
+    AUTH_API.authMe()
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                let {id, email, login} = response.data.data
+                dispatch(setAuthUserData(id, email, login))
+            }
+        })
+    AUTH_API.getAuthUserPhoto()
+        .then(response => {
+            dispatch(setAuthUserPhoto(response.data.photos.small))
+        })
 }

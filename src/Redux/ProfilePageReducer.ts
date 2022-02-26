@@ -1,5 +1,7 @@
 import {PostType} from "../components/Navbar/Profile/MyPosts/Post/Post";
 import {v1} from "uuid";
+import {PROFILE_API} from "../api/profile_api";
+import {Dispatch} from "redux";
 
 export type initialStateType = {
     posts: Array<PostType>
@@ -142,6 +144,12 @@ export function setUserProfileAC(profile: UserProfileType) {
     } as const
 }
 
+export const getUserProfileTC = (userId: string) => (dispatch: Dispatch) => {
+    PROFILE_API.getProfile(userId)
+        .then(response => {
+            dispatch(setUserProfileAC(response.data))
+        })
+}
 
 export default ProfilePageReducer
 

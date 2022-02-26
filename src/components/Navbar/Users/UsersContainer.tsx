@@ -1,15 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {AppStateType} from "../../../Redux/ReduxStore";
-import {
-    followUnfollowTC,
-    followUnfollowUser,
-    getUsersTC,
-    InitialStateType,
-    isToggleFollowingInProgress,
-    setCurrentPage,
-    UserType
-} from "../../../Redux/UsersReducer";
+import {followUnfollowTC, getUsersTC, InitialStateType, setCurrentPage, UserType} from "../../../Redux/UsersReducer";
 import {UsersAPIComponent} from "./UsersAPIComponent";
 
 type MapStateToPropsType = {

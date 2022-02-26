@@ -1,7 +1,6 @@
 import React from "react";
 import Header from "./Header";
-import axios from "axios";
-import {AuthDataType, setAuthUserData, setAuthUserPhoto} from "../../Redux/AuthReducer";
+import {AuthDataType, setAuthDataTC} from "../../Redux/AuthReducer";
 import {connect} from "react-redux";
 import {AppStateType} from "../../Redux/ReduxStore";
 
@@ -12,8 +11,7 @@ type MapStateToPropsType = {
     profilePhoto: string | null
 }
 type MapDispatchToPropsType = {
-    setAuthUserData: (userID: number, email: string, login: string) => void
-    setAuthUserPhoto: (photo: string) => void
+    setAuthDataTC: () => void
 }
 
 export type PropsType = MapStateToPropsType & MapDispatchToPropsType
@@ -21,17 +19,7 @@ export type PropsType = MapStateToPropsType & MapDispatchToPropsType
 export class HeaderContainer extends React.Component<PropsType, any> {
 
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
-            withCredentials: true
-        }).then(response => {
-            if (response.data.resultCode === 0) {
-                let {id, email, login} = response.data.data
-                this.props.setAuthUserData(id, email, login)
-            }
-            return axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`).then(response => {
-                this.props.setAuthUserPhoto(response.data.photos.small)
-            })
-        })
+       this.props.setAuthDataTC()
     }
 
     render() {
@@ -53,4 +41,4 @@ const MapStateToProps = (state: AppStateType): MapStateToPropsType => {
 }
 
 
-export default connect(MapStateToProps, {setAuthUserData, setAuthUserPhoto})(HeaderContainer)
+export default connect(MapStateToProps, {setAuthDataTC})(HeaderContainer)

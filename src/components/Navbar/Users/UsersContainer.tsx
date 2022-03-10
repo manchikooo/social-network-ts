@@ -3,6 +3,11 @@ import {connect} from "react-redux";
 import {AppStateType} from "../../../Redux/ReduxStore";
 import {followUnfollowTC, getUsersTC, InitialStateType, setCurrentPage, UserType} from "../../../Redux/UsersReducer";
 import {UsersAPIComponent} from "./UsersAPIComponent";
+import {compose} from "redux";
+import {getUserProfileTC} from "../../../Redux/ProfilePageReducer";
+import {withRouter} from "react-router-dom";
+import {withAuthRedirectHOC} from "../../../HOC/withAuthRedirectHOC";
+import {Users} from "./Users";
 
 type MapStateToPropsType = {
     usersPage: InitialStateType
@@ -35,9 +40,13 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     }
 }
 
-export const UsersContainer = connect(mapStateToProps,
-    {
-        setCurrentPage,
-        getUsersTC,
-        followUnfollowTC,
-    })(UsersAPIComponent)
+export default compose<React.ComponentType>(
+    withAuthRedirectHOC,
+    connect(mapStateToProps,
+        {
+            setCurrentPage,
+            getUsersTC,
+            followUnfollowTC,
+        }),
+    withRouter,
+)(UsersAPIComponent)

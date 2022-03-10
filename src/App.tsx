@@ -8,11 +8,11 @@ import Footer from "./components/Footer/Footer";
 import {Videos} from "./components/Navbar/Videos/Videos";
 import {Settings} from "./components/Navbar/Settings/Settings";
 import {ReduxStoreType} from "./Redux/ReduxStore";
-import {DialogsContainer} from "./components/Navbar/Dialogs/DialogsContainer";
-import {UsersContainer} from "./components/Navbar/Users/UsersContainer";
-import ProfileContainer from "./components/Navbar/Profile/ProfileContainer";
+import UsersContainer from "./components/Navbar/Users/UsersContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import {LoginPage} from "./components/Login/LoginPage";
+import ProfileContainer from "./components/Navbar/Profile/ProfileContainer";
+import DialogsContainer from "./components/Navbar/Dialogs/DialogsContainer";
 
 type AppType = {
     store: ReduxStoreType

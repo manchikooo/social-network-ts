@@ -1,10 +1,13 @@
 import React from "react";
 import classes from './ProfileInfo.module.css'
-import {UserProfileType} from "../../../../Redux/ProfilePageReducer";
-import {CommonPropsType} from "../ProfileContainer";
+import {UserProfileType} from "../../../Redux/ProfilePageReducer";
+import {CommonPropsType} from "./ProfileContainer";
+import {ProfileStatus} from "./ProfileStatus";
 
 type ProfileInfoPropsType = {
     profile: UserProfileType
+    status: string
+    updateStatus: (status: string) => void
 }
 
 export const ProfileInfo = (props: ProfileInfoPropsType) => {
@@ -24,6 +27,9 @@ export const ProfileInfo = (props: ProfileInfoPropsType) => {
             <div className={classes.avatarContainer}>
                 <img alt='ava'
                      src={props.profile.photos.large ? props.profile.photos.large : defaultAvatar}
+                />
+                <ProfileStatus status={props.status}
+                               updateStatus={props.updateStatus}
                 />
             </div>
             <div className={classes.infoContainer}>

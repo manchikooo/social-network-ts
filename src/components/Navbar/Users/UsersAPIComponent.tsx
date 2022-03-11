@@ -2,8 +2,6 @@ import React from "react";
 import {UsersPropsType} from "./UsersContainer";
 import {Users} from "./Users";
 import {Preloader} from "../../common/preloader/Preloader";
-import {USERS_API} from "../../../api/users_api";
-import {followUnfollowTC} from "../../../Redux/UsersReducer";
 
 export class UsersAPIComponent extends React.Component<UsersPropsType, any> {
 

@@ -4,10 +4,8 @@ import {AppStateType} from "../../../Redux/ReduxStore";
 import {followUnfollowTC, getUsersTC, InitialStateType, setCurrentPage, UserType} from "../../../Redux/UsersReducer";
 import {UsersAPIComponent} from "./UsersAPIComponent";
 import {compose} from "redux";
-import {getUserProfileTC} from "../../../Redux/ProfilePageReducer";
 import {withRouter} from "react-router-dom";
 import {withAuthRedirectHOC} from "../../../HOC/withAuthRedirectHOC";
-import {Users} from "./Users";
 
 type MapStateToPropsType = {
     usersPage: InitialStateType

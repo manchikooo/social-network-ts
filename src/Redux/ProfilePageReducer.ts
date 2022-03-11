@@ -6,6 +6,7 @@ import {Dispatch} from "redux";
 export type initialStateType = {
     posts: Array<PostType>
     newPostText: string
+    status: string
     profile: UserProfileType
 }
 
@@ -62,6 +63,7 @@ let initialState: initialStateType = {
             reposts: 24,
         },],
     newPostText: '',
+    status: 'default status',
     profile: {
         "aboutMe": "я круто чувак 1001%",
         "contacts": {
@@ -110,12 +112,17 @@ const ProfilePageReducer = (state = initialState, action: ActionTypes): initialS
                 ...state,
                 profile: action.profile
             }
+        case 'SET-PROFILE-STATUS':
+            return {
+                ...state,
+                status: action.status
+            }
         default:
             return state
     }
 }
 
-type ActionTypes = addPostACType | changePostACType | setUserProfileACType
+type ActionTypes = addPostACType | changePostACType | setUserProfileACType | setProfileStatusACType
 
 export type changePostACType = ReturnType<typeof changePostAC>
 
@@ -134,7 +141,6 @@ export function addPostAC() {
     } as const
 }
 
-
 type setUserProfileACType = ReturnType<typeof setUserProfileAC>
 
 export function setUserProfileAC(profile: UserProfileType) {
@@ -144,10 +150,34 @@ export function setUserProfileAC(profile: UserProfileType) {
     } as const
 }
 
+type setProfileStatusACType = ReturnType<typeof setProfileStatusAC>
+
+export function setProfileStatusAC(status: string) {
+    return {
+        type: 'SET-PROFILE-STATUS',
+        status
+    } as const
+}
+
 export const getUserProfileTC = (userId: string) => (dispatch: Dispatch) => {
     PROFILE_API.getProfile(userId)
         .then(response => {
             dispatch(setUserProfileAC(response.data))
+        })
+}
+
+export const getProfileStatusTC = (userId: string) => (dispatch: Dispatch) => {
+    PROFILE_API.getStatus(userId)
+        .then(response => {
+            dispatch(setProfileStatusAC(response.data))
+        })
+}
+export const updateProfileStatusTC = (status: string) => (dispatch: Dispatch) => {
+    PROFILE_API.updateStatus(status)
+        .then(response => {
+            if (response.data.resultCode === 0){
+                dispatch(setProfileStatusAC(status))
+            }
         })
 }
 

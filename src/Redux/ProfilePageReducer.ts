@@ -169,13 +169,14 @@ export const getUserProfileTC = (userId: string) => (dispatch: Dispatch) => {
 export const getProfileStatusTC = (userId: string) => (dispatch: Dispatch) => {
     PROFILE_API.getStatus(userId)
         .then(response => {
+            console.log(response.data)
             dispatch(setProfileStatusAC(response.data))
         })
 }
 export const updateProfileStatusTC = (status: string) => (dispatch: Dispatch) => {
     PROFILE_API.updateStatus(status)
         .then(response => {
-            if (response.data.resultCode === 0){
+            if (response.data.resultCode === 0) {
                 dispatch(setProfileStatusAC(status))
             }
         })

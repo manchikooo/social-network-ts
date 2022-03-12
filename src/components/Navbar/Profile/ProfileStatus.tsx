@@ -6,12 +6,12 @@ type ProfileStatusPropsType = {
 }
 
 export const ProfileStatus = (props: ProfileStatusPropsType) => {
-
     const [editMode, setEditMode] = useState<boolean>(false)
-    const [status, setStatus] = useState<string>(props.status)
-    console.log(status)
+    const [status, setStatus] = useState<string>('')
+
     const activateEditMode = () => {
         setEditMode(true)
+        setStatus(props.status)
     }
     const deActivateEditMode = () => {
         setEditMode(false)

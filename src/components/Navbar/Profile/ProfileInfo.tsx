@@ -3,6 +3,7 @@ import classes from './ProfileInfo.module.css'
 import {UserProfileType} from "../../../Redux/ProfilePageReducer";
 import {CommonPropsType} from "./ProfileContainer";
 import {ProfileStatus} from "./ProfileStatus";
+import {Preloader} from "../../common/preloader/Preloader";
 
 type ProfileInfoPropsType = {
     profile: UserProfileType
@@ -12,21 +13,14 @@ type ProfileInfoPropsType = {
 
 export const ProfileInfo = (props: ProfileInfoPropsType) => {
 
-    let defaultAvatar = 'https://icon-library.com/images/avatar-icon/avatar-icon-4.jpg'
-    let facebook = props.profile.contacts.facebook
-    let website = props.profile.contacts.website
-    let vk = props.profile.contacts.vk
-    let twitter = props.profile.contacts.twitter
-    let instagram = props.profile.contacts.instagram
-    let youtube = props.profile.contacts.youtube
-    let github = props.profile.contacts.github
-    let mainLink = props.profile.contacts.mainLink
+    const defaultAvatar = 'https://icon-library.com/images/avatar-icon/avatar-icon-4.jpg'
+    const {facebook, website, vk, twitter, instagram, youtube, github, mainLink} = props.profile?.contacts || {}
 
     return (
         <div className={classes.ProfileInfoBlock}>
             <div className={classes.avatarContainer}>
                 <img alt='ava'
-                     src={props.profile.photos.large ? props.profile.photos.large : defaultAvatar}
+                     src={props.profile?.photos?.large ? props.profile?.photos?.large : defaultAvatar}
                 />
                 <ProfileStatus status={props.status}
                                updateStatus={props.updateStatus}
@@ -34,7 +28,7 @@ export const ProfileInfo = (props: ProfileInfoPropsType) => {
             </div>
             <div className={classes.infoContainer}>
                 <div style={{fontWeight: 'bold', fontSize: '25px'}}>
-                    {props.profile.fullName}
+                    {props.profile?.fullName}
                 </div>
                 <div>
                     Связь со мной:

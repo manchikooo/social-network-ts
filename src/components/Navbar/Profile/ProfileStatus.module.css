@@ -1,0 +1,14 @@
+.statusContainer {
+    background-color: #00C854;
+    text-align: center;
+    cursor: pointer;
+    padding: 3px;
+    border-radius: 25px;
+    margin-top: 10px;
+}
+.inputStyle {
+    background-color: #00C854;
+    border: none !important;
+    outline: none;
+    text-align: center;
+}

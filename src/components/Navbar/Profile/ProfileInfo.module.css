@@ -4,10 +4,14 @@
     width: 75%;
     padding: 15px;
 }
+
 .avatarContainer {
-    width: 50%;
+    margin-right: 40px;
+    flex-direction: column;
+    display: flex;
 }
-.avatarContainer img{
+
+.avatarContainer img {
     width: 250px;
     border-radius: 50%;
 }

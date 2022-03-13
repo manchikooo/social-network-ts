@@ -8,6 +8,7 @@ export type initialStateType = {
     newPostText: string
     status: string
     profile: UserProfileType
+    isFetching: boolean
 }
 
 export type UserProfileType = {
@@ -64,27 +65,8 @@ let initialState: initialStateType = {
         },],
     newPostText: '',
     status: 'default status',
-    profile: {
-        "aboutMe": "я круто чувак 1001%",
-        "contacts": {
-            "facebook": "facebook.com",
-            "website": '',
-            "vk": "vk.com/dimych",
-            "twitter": "https://twitter.com/@sdf",
-            "instagram": "instagra.com/sds",
-            "youtube": '',
-            "github": "github.com",
-            "mainLink": ''
-        },
-        "lookingForAJob": true,
-        "lookingForAJobDescription": "не ищу, а дурачусь",
-        "fullName": "samurai dimych",
-        "userId": 2,
-        "photos": {
-            "small": "https://social-network.samuraijs.com/activecontent/images/users/2/user-small.jpg?v=0",
-            "large": "https://social-network.samuraijs.com/activecontent/images/users/2/user.jpg?v=0"
-        }
-    }
+    profile: {} as UserProfileType,
+    isFetching: false
 }
 
 const ProfilePageReducer = (state = initialState, action: ActionTypes): initialStateType => {
@@ -117,12 +99,17 @@ const ProfilePageReducer = (state = initialState, action: ActionTypes): initialS
                 ...state,
                 status: action.status
             }
+        case 'IS-FETCHING-FOR-PROFILE':
+            return {
+                ...state,
+                isFetching: action.value
+            }
         default:
             return state
     }
 }
 
-type ActionTypes = addPostACType | changePostACType | setUserProfileACType | setProfileStatusACType
+type ActionTypes = addPostACType | changePostACType | setUserProfileACType | setProfileStatusACType | isFetchingProfileACType
 
 export type changePostACType = ReturnType<typeof changePostAC>
 
@@ -158,10 +145,20 @@ export function setProfileStatusAC(status: string) {
         status
     } as const
 }
+type isFetchingProfileACType = ReturnType<typeof isFetchingProfileAC>
+
+export function isFetchingProfileAC(value: boolean) {
+    return {
+        type: 'IS-FETCHING-FOR-PROFILE',
+        value
+    } as const
+}
 
 export const getUserProfileTC = (userId: string) => (dispatch: Dispatch) => {
+    dispatch(isFetchingProfileAC(true))
     PROFILE_API.getProfile(userId)
         .then(response => {
+            dispatch(isFetchingProfileAC(false))
             dispatch(setUserProfileAC(response.data))
         })
 }

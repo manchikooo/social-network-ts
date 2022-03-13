@@ -14,6 +14,7 @@ import {compose} from "redux";
 type MapStateToPropsType = {
     profile: UserProfileType
     status: string
+    isFetching: boolean
 }
 type MapDispatchToPropsType = {
     getUserProfileTC: (userId: string) => void
@@ -34,7 +35,7 @@ class ProfileContainer extends React.Component<PropsType, any> {
     componentDidMount() {
         let userID = this.props.match.params.userID
         if (!userID) {
-            userID = '2'
+            userID = '21575'
         }
         this.props.getUserProfileTC(userID)
         this.props.getProfileStatusTC(userID)
@@ -46,6 +47,7 @@ class ProfileContainer extends React.Component<PropsType, any> {
                 <Profile
                     profile={this.props.profile}
                     status={this.props.status}
+                    isFetching={this.props.isFetching}
                     updateStatus={this.props.updateProfileStatusTC}
                 />
             </div>
@@ -56,7 +58,8 @@ class ProfileContainer extends React.Component<PropsType, any> {
 let MapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         profile: state.profilePage.profile,
-        status: state.profilePage.status
+        status: state.profilePage.status,
+        isFetching: state.profilePage.isFetching,
     }
 }
 

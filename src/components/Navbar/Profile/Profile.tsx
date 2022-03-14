@@ -13,7 +13,7 @@ type ProfileType = {
 
 export const Profile = (props: ProfileType) => {
     console.log(props.profile)
-    if (!props.profile.hasOwnProperty('aboutMe')) return <Preloader/>
+    if (props.isFetching) return <Preloader/>
     return (
         <div>
             <ProfileInfo

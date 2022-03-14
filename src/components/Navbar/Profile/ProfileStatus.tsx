@@ -47,7 +47,7 @@ export const ProfileStatus = (props: ProfileStatusPropsType) => {
                 : <div>
                     <span
                         onDoubleClick={activateEditMode}>
-                        {props.status}
+                        {props.status ? props.status : 'this user has no status'}
                     </span>
                 </div>
             }
